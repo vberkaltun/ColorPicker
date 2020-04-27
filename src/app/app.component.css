@@ -50,9 +50,7 @@
 /* LAYERS ---------------------------------------------------------- */
 
 .input {
-    /* calculation: square width + back padding */
-    width: 146px;
-    height: 146px;
+    padding-right: 12px;
 }
 
 .input .layer {
@@ -68,8 +66,8 @@
 
 .input .layer {
     /* calculation: square width + back padding */
-    width: 108px;
-    height: 108px;
+    width: 112px;
+    height: 112px;
 }
 
 .input .layer * {
@@ -85,7 +83,7 @@
 }
 
 .input .layer .back {
-    margin: 12px 0px 0px 12px;
+    margin: 16px 0px 0px 16px;
     /* background-color: rgba(0, 0, 0, 0.7); */
 }
 
