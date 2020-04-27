@@ -76,12 +76,12 @@
 /* FORE & BACK ----------------------------------------------------- */
 
 .input .layer .fore {
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
 }
 
 .input .layer .back {
     margin: 12px 0px 0px 12px;
-    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(0, 0, 0, 0.7); */
 }
 
 /* SHADOW ---------------------------------------------------------- */

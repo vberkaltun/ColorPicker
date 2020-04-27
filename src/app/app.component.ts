@@ -1,25 +1,127 @@
 import { Component, OnInit } from '@angular/core';
-import { IfStmt } from '@angular/compiler';
 
-export const regexMainFormat: RegExp = /^\s*(#?\s*(([a-zA-Z0-9]{3}){1,2})|([R|r][G|g][B|b]|[H|h][S|s][L|l]|[H|h][E|e][X|x])?\s*([\s]+|[\[]|[\(]|[\{])([a-zA-Z0-9\s,;°]*)([\s]*|[\]]|[\)]|[\}]))\s*$/g;
-export const regexBrackets: RegExp = /^\s*(\s{1}([a-zA-Z0-9\s,;°]*)\s{1}|\[{1}([a-zA-Z0-9\s,;°]*)\]{1}|\({1}([a-zA-Z0-9\s,;°]*)\){1}|\{{1}([a-zA-Z0-9\s,;°]*)\}{1})\s*$/g;
-export const regexValueFormat: RegExp = /^\s*((([a-zA-Z0-9]{3}){1,2})|([0-9\s,;]*[^°a-zA-Z]*)|([0-9\s,;°]*[^a-zA-Z]*))\s*$/g;
+// INDEX 1: FULL HEX
+// INDEX 2: HEX INSIDE
+// INDEX 3: FULL HSL & RGB & HEX
+// INDEX 4: TYPE
+// INDEX 5: BRACKETS
+// INDEX 6: HSL & RGB & HEX INSIDE
+// INDEX 7: BRACKETS
+export const regexMainFormat: RegExp = /^\s*(#?\s*(([a-zA-Z0-9]{3}){1,2})|([R|r][G|g][B|b]|[H|h][S|s][L|l]|[H|h][E|e][X|x])?\s*([\s]+|[\[]|[\(]|[\{])([a-zA-Z0-9\s,;°%]*)([\s]*|[\]]|[\)]|[\}]))\s*$/g;
+// INDEX 2: s
+// INDEX 3: [
+// INDEX 4: (
+// INDEX 5: {
+export const regexBrackets: RegExp = /^\s*(\s{1}([a-zA-Z0-9\s,;°%]*)\s{1}|\[{1}([a-zA-Z0-9\s,;°%]*)\]{1}|\({1}([a-zA-Z0-9\s,;°%]*)\){1}|\{{1}([a-zA-Z0-9\s,;°%]*)\}{1})\s*$/g;
+// INDEX 2: HEX
+// INDEX 4: RGB
+// INDEX 5: HSL
+export const regexValueFormat: RegExp = /^\s*((([a-zA-Z0-9]{3}){1,2})|([0-9\s,;]*[^°%a-zA-Z]*)|([0-9\s,;°%]*[^a-zA-Z]*))\s*$/g;
 
-export enum ColorFormat { Idle, RGB, HSL, HEX }
+// INDEX 1: HEX
+export const regexJustHEX: RegExp = /^\s*(([a-fA-F0-9]{3}){1,2})\s*$/g;
+// INDEX 2: DIGIT 1, R
+// INDEX 4: DIGIT 2, G
+// INDEX 6: DIGIT 3, B
+export const regexJustRGB: RegExp = /^\s*(([0-9]*[0-9]*[0-9]*)?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?)\s*$/g;
+// INDEX 2: DIGIT 2, R
+// INDEX 4: DIGIT 5, G
+// INDEX 6: DIGIT 8, B
+export const regexJustHSL: RegExp = /^\s*(([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?)\s*$/g;
 
+export enum ColorFormat { Idle, HEX, RGB, HSL }
 export class Color {
-    R: number = 0;
-    G: number = 0;
-    B: number = 0;
-    A: number = 0;
+    private r: number = 0;
+    private g: number = 0;
+    private b: number = 0;
 
-    public getHSL(withMask: boolean = true): string { return null; }
-    public getRGB(withMask: boolean = true): string { return null; }
-    public getHEX(withMask: boolean = true): string { return null; }
+    private hex: string = null;
+    private format: ColorFormat = ColorFormat.Idle;
 
-    public setHSL(value: string): boolean { return false; }
-    public setRGB(value: string): boolean { return false; }
-    public setHEX(value: string): boolean { return false; }
+    public resetColors() {
+        this.r = 0;
+        this.g = 0;
+        this.b = 0;
+        
+        this.hex = null;
+        this.format = ColorFormat.Idle;
+    }
+
+    public getColor(withMask: boolean = true): string {
+        switch (this.format) {
+            case ColorFormat.HEX:
+                return (withMask ? "#" : null) + this.hex;
+            case ColorFormat.RGB:
+                return (withMask ? "rgb(" : null) +
+                    this.r + "," +
+                    this.g + "," +
+                    this.b +
+                    (withMask ? ")" : null);
+            case ColorFormat.HSL:
+                return (withMask ? "hsl(" : null) +
+                    this.r + "," +
+                    this.g + "%," +
+                    this.b + "%" +
+                    (withMask ? ")" : null);
+
+            default:
+            case ColorFormat.Idle:
+                return "rgb(0,0,0, 0.5)";
+        }
+    }
+    public setColor(value: [ColorFormat, string]) {
+        switch (value[0]) {
+            case ColorFormat.HEX:
+                this.setHEX(value[1]);
+                this.format = ColorFormat.HEX;
+                break;
+
+            case ColorFormat.RGB:
+                this.setRGB(value[1]);
+                this.format = ColorFormat.RGB;
+                break;
+
+            case ColorFormat.HSL:
+                this.setHSL(value[1]);
+                this.format = ColorFormat.HSL;
+                break;
+
+            default:
+            case ColorFormat.Idle:
+                this.hex = "000";
+                this.format = ColorFormat.Idle;
+                break;
+        }
+    }
+
+    public setHEX(value: string) {
+        // fill and then null check
+        let main = new RegExp(regexJustHEX).exec(value);
+        if (main == null) return;
+
+        this.hex = main[1];
+        console.log(main);
+    }
+    public setRGB(value: string) {
+        // fill and then null check
+        let main = new RegExp(regexJustRGB).exec(value);
+        if (main == null) return;
+
+        this.r = Number(main[2]);
+        this.g = Number(main[4]);
+        this.b = Number(main[6]);
+        console.log(main);
+    }
+    public setHSL(value: string) {
+        // fill and then null check
+        let main = new RegExp(regexJustHSL).exec(value);
+        if (main == null) return;
+
+        this.r = Number(main[2]);
+        this.g = Number(main[5]);
+        this.b = Number(main[8]);
+        console.log(main);
+    }
 }
 
 @Component({
@@ -36,33 +138,40 @@ export class AppComponent implements OnInit {
     public title = 'RGB to RGBA ColorPicker';
     public ngOnInit(): void { }
 
-    private colorFore: string = null;
-    private colorBack: string = null;
+    private colorFore: Color = new Color();
+    private colorBack: Color = new Color();
+
+    private colorForeResult: string = null;
+    private colorBackResult: string = null;
 
     // ---
     // trigger events
     // ---
 
     public onForeValueChange(value: string) {
-        this.colorFore = value;
-        let x = this.calculateRegex(value);
-        console.log(ColorFormat[x[0]]);
+        let color = this.regexCheckFormat(value);
+        if (color == null) return;
+
+        this.colorFore.setColor(color);
+        this.colorForeResult = this.colorFore.getColor();
     }
 
     public onBackValueChange(value: string) {
-        this.colorBack = value;
-        let x = this.calculateRegex(value);
-        console.log(ColorFormat[x[0]]);
+        let color = this.regexCheckFormat(value);
+        if (color == null) return;
+
+        this.colorBack.setColor(color);
+        this.colorBackResult = this.colorBack.getColor();
     }
 
     // ---
     // regex calculations
     // ---
 
-    private calculateRegex(value: string): [ColorFormat, string] {
+    private regexCheckFormat(value: string): [ColorFormat, string] {
         // null check
         if (value.trim().length == 0) return null;
-        
+
         // fill and then null check
         let main = new RegExp(regexMainFormat).exec(value);
         // check based on main value
