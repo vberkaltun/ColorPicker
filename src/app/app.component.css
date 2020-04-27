@@ -1,0 +1,91 @@
+/* BODY ------------------------------------------------------------ */
+
+::ng-deep .mat-form-field, ::ng-deep .mat-chip-list {
+    margin: 0px 0px 0px 24px;
+    float: left;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    margin-bottom: -1.25em !important;
+}
+
+::ng-deep .mat-form-field {
+    width: 550px !important;
+    padding: 0px 0px 12px 0px;
+}
+
+::ng-deep .mat-divider {
+    margin: 0px 0px 24px 24px !important;
+    padding: 0px !important;
+}
+
+/* MAIN & CONTAINER ------------------------------------------------ */
+
+.main {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    display: flex;
+    width: fit-content;
+    padding: 24px 0px 0px 0px;
+}
+
+/* SETTINGS -------------------------------------------------------- */
+
+.settings div {
+    /* side-by-side: inline-grid */
+    display: grid;
+    padding: 0px 0px 24px 0px;
+}
+
+/* LAYERS ---------------------------------------------------------- */
+
+.input {
+    /* calculation: square width + back padding */
+    width: 146px;
+    height: 146px;
+}
+
+.input .layer {
+    position: relative;
+    display: grid;
+    margin: 0 auto;
+}
+
+.input .layer * {
+    /* transform: rotate(45deg) skew(-10deg, -10deg); */
+    position: absolute;
+}
+
+.input .layer {
+    /* calculation: square width + back padding */
+    width: 108px;
+    height: 108px;
+}
+
+.input .layer * {
+    height: 96px;
+    width: 96px;
+    border-radius: 8px;
+}
+
+/* FORE & BACK ----------------------------------------------------- */
+
+.input .layer .fore {
+    background-color: #ffffff;
+}
+
+.input .layer .back {
+    margin: 12px 0px 0px 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* SHADOW ---------------------------------------------------------- */
+
+.shadow {
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15), 0px 0px 40px rgba(0, 0, 0, 0.05);
+}

@@ -1,1 +1,46 @@
-<div class="container"></div>
+<div class="main">
+    <div class="container">
+        <div class="input">
+            <div class="layer">
+                <div class="fore shadow"></div>
+                <div class="back shadow"></div>
+            </div>
+        </div>
+
+        <div class="settings">
+            <div>
+                <mat-form-field appearance="outline" floatLabel="always" autocomplete="off">
+                    <mat-label>Foreground color</mat-label>
+                    <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
+                </mat-form-field>
+                <mat-chip-list>
+                    <mat-chip>Papadum</mat-chip>
+                    <mat-chip>Naan</mat-chip>
+                    <mat-chip>Dal</mat-chip>
+                </mat-chip-list>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" floatLabel="always" autocomplete="off">
+                    <mat-label>Background color</mat-label>
+                    <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
+                </mat-form-field>
+                <mat-chip-list>
+                    <mat-chip>Pap11111adum</mat-chip>
+                    <mat-chip>2222S</mat-chip>
+                    <mat-chip>Dal</mat-chip>
+                </mat-chip-list>
+            </div>
+            <mat-divider></mat-divider>
+
+            <div class="settings">
+                <div>
+                    <mat-chip-list>
+                        <mat-chip color="primary" selected>Pap11111adum</mat-chip>
+                        <mat-chip color="primary" selected>2222S</mat-chip>
+                        <mat-chip color="primary" selected>Dal</mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
