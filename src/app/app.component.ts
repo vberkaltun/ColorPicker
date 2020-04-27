@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+var convert = require('color-convert');
 
 // INDEX 1: FULL HEX
 // INDEX 2: HEX INSIDE
@@ -24,103 +25,77 @@ export const regexJustHEX: RegExp = /^\s*(([a-fA-F0-9]{3}){1,2})\s*$/g;
 // INDEX 4: DIGIT 2, G
 // INDEX 6: DIGIT 3, B
 export const regexJustRGB: RegExp = /^\s*(([0-9]*[0-9]*[0-9]*)?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?)\s*$/g;
-// INDEX 2: DIGIT 2, R
-// INDEX 4: DIGIT 5, G
-// INDEX 6: DIGIT 8, B
+// INDEX 2: DIGIT 1, R
+// INDEX 5: DIGIT 2, G
+// INDEX 8: DIGIT 3, B
 export const regexJustHSL: RegExp = /^\s*(([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?)\s*$/g;
 
 export enum ColorFormat { Idle, HEX, RGB, HSL }
 export class Color {
-    private r: number = 0;
-    private g: number = 0;
-    private b: number = 0;
-
     private hex: string = null;
-    private format: ColorFormat = ColorFormat.Idle;
+    private rgb: string = null;
+    private hsl: string = null;
 
-    public resetColors() {
-        this.r = 0;
-        this.g = 0;
-        this.b = 0;
-        
-        this.hex = null;
-        this.format = ColorFormat.Idle;
-    }
-
-    public getColor(withMask: boolean = true): string {
-        switch (this.format) {
-            case ColorFormat.HEX:
-                return (withMask ? "#" : null) + this.hex;
-            case ColorFormat.RGB:
-                return (withMask ? "rgb(" : null) +
-                    this.r + "," +
-                    this.g + "," +
-                    this.b +
-                    (withMask ? ")" : null);
-            case ColorFormat.HSL:
-                return (withMask ? "hsl(" : null) +
-                    this.r + "," +
-                    this.g + "%," +
-                    this.b + "%" +
-                    (withMask ? ")" : null);
-
-            default:
-            case ColorFormat.Idle:
-                return "rgb(0,0,0, 0.5)";
-        }
+    public resetColor() {
+        this.hex = "#000";
+        this.rgb = "rgb(0,0,0)";
+        this.hsl = "hsl(0,0,0)";
     }
     public setColor(value: [ColorFormat, string]) {
         switch (value[0]) {
             case ColorFormat.HEX:
-                this.setHEX(value[1]);
-                this.format = ColorFormat.HEX;
+                {
+                    let main = new RegExp(regexJustHEX).exec(value[1]);
+                    if (main == null) return;
+                    this.setColorBatch(value[0], main[1]);
+                }
                 break;
 
             case ColorFormat.RGB:
-                this.setRGB(value[1]);
-                this.format = ColorFormat.RGB;
+                {
+                    let main = new RegExp(regexJustRGB).exec(value[1]);
+                    if (main == null) return;
+                    this.setColorBatch(value[0], [main[2], main[4], main[6]]);
+                }
                 break;
 
             case ColorFormat.HSL:
-                this.setHSL(value[1]);
-                this.format = ColorFormat.HSL;
+                {
+                    let main = new RegExp(regexJustHSL).exec(value[1]);
+                    if (main == null) return;
+                    this.setColorBatch(value[0], [main[2], main[5], main[8]]);
+                }
                 break;
 
             default:
             case ColorFormat.Idle:
-                this.hex = "000";
-                this.format = ColorFormat.Idle;
+                this.resetColor();
                 break;
         }
     }
 
-    public setHEX(value: string) {
-        // fill and then null check
-        let main = new RegExp(regexJustHEX).exec(value);
-        if (main == null) return;
-
-        this.hex = main[1];
-        console.log(main);
+    private setColorBatch(type: ColorFormat, value: any) {
+        this.setNumericHEX(type, value);
+        this.setNumericRGB(type, value);
+        this.setNumericHSL(type, value);
     }
-    public setRGB(value: string) {
-        // fill and then null check
-        let main = new RegExp(regexJustRGB).exec(value);
-        if (main == null) return;
 
-        this.r = Number(main[2]);
-        this.g = Number(main[4]);
-        this.b = Number(main[6]);
-        console.log(main);
+    private setNumericHEX(type: ColorFormat, value: any) {
+        if (ColorFormat[type].toLowerCase() == "hex") return;
+        let main = convert?.[ColorFormat[type].toLowerCase()].hex(value);
+        this.hex = "#" + main;
     }
-    public setHSL(value: string) {
-        // fill and then null check
-        let main = new RegExp(regexJustHSL).exec(value);
-        if (main == null) return;
 
-        this.r = Number(main[2]);
-        this.g = Number(main[5]);
-        this.b = Number(main[8]);
-        console.log(main);
+    private setNumericRGB(type: ColorFormat, value: any) {
+        if (ColorFormat[type].toLowerCase() == "rgb") return;
+        let main = convert?.[ColorFormat[type].toLowerCase()].rgb(value);
+        this.rgb = "rgb(" + main[0] + ", " + main[1] + ", " + main[2] + ", 0.85)";
+    }
+
+    private setNumericHSL(type: ColorFormat, value: any) {
+        if (ColorFormat[type].toLowerCase() == "hsl") return;
+        let main = convert?.[ColorFormat[type].toLowerCase()].hsl(value);
+        this.hsl = "hsl(" + main[0] + ", " + main[1] + "%, " + main[2] + "%)";
     }
 }
 
@@ -141,9 +116,6 @@ export class AppComponent implements OnInit {
     private colorFore: Color = new Color();
     private colorBack: Color = new Color();
 
-    private colorForeResult: string = null;
-    private colorBackResult: string = null;
-
     // ---
     // trigger events
     // ---
@@ -151,17 +123,13 @@ export class AppComponent implements OnInit {
     public onForeValueChange(value: string) {
         let color = this.regexCheckFormat(value);
         if (color == null) return;
-
         this.colorFore.setColor(color);
-        this.colorForeResult = this.colorFore.getColor();
     }
 
     public onBackValueChange(value: string) {
         let color = this.regexCheckFormat(value);
         if (color == null) return;
-
         this.colorBack.setColor(color);
-        this.colorBackResult = this.colorBack.getColor();
     }
 
     // ---
