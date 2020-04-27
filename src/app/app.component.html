@@ -2,8 +2,8 @@
     <div class="container">
         <div class="input">
             <div class="layer">
-                <div class="fore shadow" [style.background-color]="colorFore.rgb"></div>
-                <div class="back shadow" [style.background-color]="colorBack.rgb"></div>
+                <div class="fore shadow" [style.background]="colorFore.colorUI" [ngClass]="colorFore.colorUI != null ? 'isSet' : 'isForeNotSet'"></div>
+                <div class="back shadow" [style.background]="colorBack.colorUI" [ngClass]="colorBack.colorUI != null ? 'isSet' : 'isBackNotSet'"></div>
             </div>
         </div>
 
@@ -13,10 +13,10 @@
                     <mat-label>Foreground color</mat-label>
                     <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
                 </mat-form-field>
-                <mat-chip-list >
-                    <mat-chip (click)="openSnackBar(colorFore.hex)">{{ colorFore.hex }} <span class="material-icons">file_copy</span></mat-chip>
-                    <mat-chip (click)="openSnackBar(colorFore.rgb)">{{ colorFore.rgb }} <span class="material-icons">file_copy</span></mat-chip>
-                    <mat-chip (click)="openSnackBar(colorFore.hsl)">{{ colorFore.hsl }} <span class="material-icons">file_copy</span></mat-chip>
+                <mat-chip-list>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.hex">{{ colorFore.hex }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.rgb">{{ colorFore.rgb }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.hsl">{{ colorFore.hsl }} <span class="material-icons">file_copy</span></mat-chip>
                 </mat-chip-list>
             </div>
             <div>
@@ -25,9 +25,9 @@
                     <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
                 </mat-form-field>
                 <mat-chip-list>
-                    <mat-chip (click)="openSnackBar(colorBack.hex)">{{ colorBack.hex }} <span class="material-icons">file_copy</span></mat-chip>
-                    <mat-chip (click)="openSnackBar(colorBack.rgb)">{{ colorBack.rgb }} <span class="material-icons">file_copy</span></mat-chip>
-                    <mat-chip (click)="openSnackBar(colorBack.hsl)">{{ colorBack.hsl }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.hex">{{ colorBack.hex }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.rgb">{{ colorBack.rgb }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.hsl">{{ colorBack.hsl }} <span class="material-icons">file_copy</span></mat-chip>
                 </mat-chip-list>
             </div>
             <mat-divider></mat-divider>

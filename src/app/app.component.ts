@@ -31,16 +31,19 @@ export const regexJustRGB: RegExp = /^\s*(([0-9]*[0-9]*[0-9]*)?\s*(\s+|[,]|[;])\
 // INDEX 8: DIGIT 3, B
 export const regexJustHSL: RegExp = /^\s*(([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]*[0-9]*[0-9]*)?\s*([°]|[%])?)\s*$/g;
 
-export enum ColorFormat { Idle, HEX, RGB, HSL }
+export enum ColorFormat { Idle, HEX, RGB, HSL };
 export class Color {
-    private hex: string = null;
-    private rgb: string = null;
-    private hsl: string = null;
+    public hex: string = null;
+    public rgb: string = null;
+    public hsl: string = null;
+    public colorUI: string = null;
+
 
     public resetColor() {
         this.hex = "#000";
         this.rgb = "rgb(0,0,0)";
         this.hsl = "hsl(0,0,0)";
+        this.colorUI = "hsl(0,0,0)";
     }
     public setColor(value: [ColorFormat, string]) {
         switch (value[0]) {
@@ -92,7 +95,9 @@ export class Color {
         let main;
         try { main = convert?.[ColorFormat[type].toLowerCase()].rgb(value) }
         catch (Exception) { main = value; }
-        this.rgb = "rgb(" + main[0] + ", " + main[1] + ", " + main[2] + ", 0.85)";
+        this.rgb = "rgb(" + main[0] + ", " + main[1] + ", " + main[2] + ")";
+        this.colorUI = "rgb(" + main[0] + ", " + main[1] + ", " + main[2] + ", 0.75)";
+
     }
 
     private setNumericHSL(type: ColorFormat, value: any) {
@@ -118,8 +123,8 @@ export class AppComponent implements OnInit {
     public constructor(private snackBar: MatSnackBar) { }
     public ngOnInit(): void { }
 
-    private colorFore: Color = new Color();
-    private colorBack: Color = new Color();
+    public colorFore: Color = new Color();
+    public colorBack: Color = new Color();
 
     // ---
     // trigger events
@@ -127,18 +132,21 @@ export class AppComponent implements OnInit {
 
     public onForeValueChange(value: string) {
         let color = this.regexCheckFormat(value);
+        
+        this.colorFore.colorUI = null;
         if (color == null) return;
         this.colorFore.setColor(color);
     }
 
     public onBackValueChange(value: string) {
         let color = this.regexCheckFormat(value);
+        
+        this.colorBack.colorUI = null;
         if (color == null) return;
         this.colorBack.setColor(color);
     }
 
-    public openSnackBar(value:any) {
-        console.log(value);
+    public openSnackBar() {
         this.snackBar.open("Copied to clipboard!", "OK", {
             duration: 2000,
         });
