@@ -81,20 +81,25 @@ export class Color {
     }
 
     private setNumericHEX(type: ColorFormat, value: any) {
-        if (ColorFormat[type].toLowerCase() == "hex") return;
-        let main = convert?.[ColorFormat[type].toLowerCase()].hex(value);
+        let main;
+        try { main = convert?.[ColorFormat[type].toLowerCase()].hex(value); }
+        catch (Exception) { main = value; }
+
         this.hex = "#" + main;
     }
 
     private setNumericRGB(type: ColorFormat, value: any) {
-        if (ColorFormat[type].toLowerCase() == "rgb") return;
-        let main = convert?.[ColorFormat[type].toLowerCase()].rgb(value);
+        let main;
+        try { main = convert?.[ColorFormat[type].toLowerCase()].rgb(value) }
+        catch (Exception) { main = value; }
         this.rgb = "rgb(" + main[0] + ", " + main[1] + ", " + main[2] + ", 0.85)";
     }
 
     private setNumericHSL(type: ColorFormat, value: any) {
-        if (ColorFormat[type].toLowerCase() == "hsl") return;
-        let main = convert?.[ColorFormat[type].toLowerCase()].hsl(value);
+        let main;
+        try { main = convert?.[ColorFormat[type].toLowerCase()].hsl(value) }
+        catch (Exception) { main = value; }
+
         this.hsl = "hsl(" + main[0] + ", " + main[1] + "%, " + main[2] + "%)";
     }
 }

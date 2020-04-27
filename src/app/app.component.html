@@ -14,9 +14,9 @@
                     <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
                 </mat-form-field>
                 <mat-chip-list>
-                    <mat-chip>Papadum</mat-chip>
-                    <mat-chip>Naan</mat-chip>
-                    <mat-chip>Dal</mat-chip>
+                    <mat-chip>{{ colorFore.hex }}</mat-chip>
+                    <mat-chip>{{ colorFore.rgb }}</mat-chip>
+                    <mat-chip>{{ colorFore.hsl }}</mat-chip>
                 </mat-chip-list>
             </div>
             <div>
@@ -25,9 +25,9 @@
                     <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
                 </mat-form-field>
                 <mat-chip-list>
-                    <mat-chip>Pap11111adum</mat-chip>
-                    <mat-chip>2222S</mat-chip>
-                    <mat-chip>Dal</mat-chip>
+                    <mat-chip>{{ colorBack.hex }}</mat-chip>
+                    <mat-chip>{{ colorBack.rgb }}</mat-chip>
+                    <mat-chip>{{ colorBack.hsl }}</mat-chip>
                 </mat-chip-list>
             </div>
             <mat-divider></mat-divider>
