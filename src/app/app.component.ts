@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-var convert = require('color-convert');
+import { MatSnackBar } from '@angular/material/snack-bar';
+import * as convert from 'color-convert';
 
 // INDEX 1: FULL HEX
 // INDEX 2: HEX INSIDE
@@ -84,7 +85,6 @@ export class Color {
         let main;
         try { main = convert?.[ColorFormat[type].toLowerCase()].hex(value); }
         catch (Exception) { main = value; }
-
         this.hex = "#" + main;
     }
 
@@ -99,7 +99,6 @@ export class Color {
         let main;
         try { main = convert?.[ColorFormat[type].toLowerCase()].hsl(value) }
         catch (Exception) { main = value; }
-
         this.hsl = "hsl(" + main[0] + ", " + main[1] + "%, " + main[2] + "%)";
     }
 }
@@ -116,6 +115,7 @@ export class AppComponent implements OnInit {
     // ---
 
     public title = 'RGB to RGBA ColorPicker';
+    public constructor(private snackBar: MatSnackBar) { }
     public ngOnInit(): void { }
 
     private colorFore: Color = new Color();
@@ -135,6 +135,13 @@ export class AppComponent implements OnInit {
         let color = this.regexCheckFormat(value);
         if (color == null) return;
         this.colorBack.setColor(color);
+    }
+
+    public openSnackBar(value:any) {
+        console.log(value);
+        this.snackBar.open("Copied to clipboard!", "OK", {
+            duration: 2000,
+        });
     }
 
     // ---

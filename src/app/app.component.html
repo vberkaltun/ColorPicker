@@ -13,10 +13,10 @@
                     <mat-label>Foreground color</mat-label>
                     <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
                 </mat-form-field>
-                <mat-chip-list>
-                    <mat-chip>{{ colorFore.hex }}</mat-chip>
-                    <mat-chip>{{ colorFore.rgb }}</mat-chip>
-                    <mat-chip>{{ colorFore.hsl }}</mat-chip>
+                <mat-chip-list >
+                    <mat-chip (click)="openSnackBar(colorFore.hex)">{{ colorFore.hex }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar(colorFore.rgb)">{{ colorFore.rgb }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar(colorFore.hsl)">{{ colorFore.hsl }} <span class="material-icons">file_copy</span></mat-chip>
                 </mat-chip-list>
             </div>
             <div>
@@ -25,9 +25,9 @@
                     <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
                 </mat-form-field>
                 <mat-chip-list>
-                    <mat-chip>{{ colorBack.hex }}</mat-chip>
-                    <mat-chip>{{ colorBack.rgb }}</mat-chip>
-                    <mat-chip>{{ colorBack.hsl }}</mat-chip>
+                    <mat-chip (click)="openSnackBar(colorBack.hex)">{{ colorBack.hex }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar(colorBack.rgb)">{{ colorBack.rgb }} <span class="material-icons">file_copy</span></mat-chip>
+                    <mat-chip (click)="openSnackBar(colorBack.hsl)">{{ colorBack.hsl }} <span class="material-icons">file_copy</span></mat-chip>
                 </mat-chip-list>
             </div>
             <mat-divider></mat-divider>

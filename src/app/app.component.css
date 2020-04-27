@@ -19,6 +19,11 @@
     padding: 0px !important;
 }
 
+::ng-deep .material-icons {
+    font-size: 14px !important;
+    padding-left: 8px;
+}
+
 /* MAIN & CONTAINER ------------------------------------------------ */
 
 .main {
