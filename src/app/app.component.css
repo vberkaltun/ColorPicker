@@ -1,6 +1,6 @@
 /* BODY ------------------------------------------------------------ */
 
-::ng-deep .mat-form-field, ::ng-deep .mat-chip-list {
+::ng-deep .mat-form-field {
     margin: 0px 0px 0px 24px;
     float: left;
 }
@@ -11,17 +11,23 @@
 
 ::ng-deep .mat-form-field {
     width: 550px !important;
-    padding: 0px 0px 12px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+::ng-deep .mat-chip-list {
+    padding: 12px 0px 0px 24px;
 }
 
 ::ng-deep .mat-divider {
-    margin: 0px 0px 24px 24px !important;
+    margin: 0px 0px 12px 24px !important;
     padding: 0px !important;
 }
 
 ::ng-deep .material-icons {
+    font-family: "Material Icons Outlined" !important;
     font-size: 14px !important;
-    padding-left: 8px;
+    padding-left: 8px !important;
+    color: #212121 !important;
 }
 
 /* MAIN & CONTAINER ------------------------------------------------ */
@@ -78,11 +84,11 @@
 
 /* FORE & BACK ----------------------------------------------------- */
 
-.input .layer .fore {
+.input .layer .back {
     /* background-color: #ffffff; */
 }
 
-.input .layer .back {
+.input .layer .fore {
     margin: 16px 0px 0px 16px;
     /* background-color: rgba(0, 0, 0, 0.7); */
 }
@@ -90,10 +96,14 @@
 /* SHADOW ---------------------------------------------------------- */
 
 .shadow {
-    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15), 0px 0px 40px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25), 0px 20px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* BACKGROUND ------------------------------------------------------ */
+/* VALUE CHECK ----------------------------------------------------- */
+
+.isForeNotSet, .isBackNotSet, .isSet {
+    transition: all 0.5s ease;
+}
 
 .isForeNotSet {
     background: repeating-linear-gradient( -55deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) 5px, rgba(0, 0, 0, 0.30) 5px, rgba(0, 0, 0, 0.30) 10px);
