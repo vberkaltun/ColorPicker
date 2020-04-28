@@ -27,41 +27,43 @@ export class Color {
     public hex: string = this.defaultHEX;
     public rgb: string = this.defaultRGB;
     public hsl: string = this.defaultHSL;
+
     public colorUI: string = this.defaultColorUI;
+    public isColorSet: boolean = false;
 
     // ---
     // public functions
     // ---
 
-    public resetColor(): boolean {
+    public resetColor() {
         this.hex = this.defaultHEX;
         this.rgb = this.defaultRGB;
         this.hsl = this.defaultHSL;
-        this.colorUI = this.defaultColorUI;
 
-        return false;
+        this.colorUI = this.defaultColorUI;
+        this.isColorSet = false;
     }
-    public setColor(value: [ColorFormat, string]): boolean {
+    public setColor(value: [ColorFormat, string]) {
+        // first reset all color values to default
+        this.resetColor();
+
         // reflection solution
         let main = new RegExp(this?.["regexJust" + ColorFormat[value[0]]]).exec(value[1]);
-        if (main == null) return false;
+        if (main == null) return;
 
         switch (value[0]) {
             case ColorFormat.HEX:
                 this.setColorBatch(value[0], main[1]);
-                return true;
+                break;
             case ColorFormat.RGB:
                 this.setColorBatch(value[0], [main[2], main[4], main[6]]);
-                return true;
+                break;
             case ColorFormat.HSL:
                 this.setColorBatch(value[0], [main[2], main[5], main[8]]);
-                return true;
-
-            default:
-            case ColorFormat.Idle:
-                this.resetColor();
-                return true;
+                break;
         }
+
+        this.isColorSet = true;
     }
 
     private setColorBatch(type: ColorFormat, value: any) {
