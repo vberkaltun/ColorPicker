@@ -20,26 +20,26 @@ export class AppComponent implements OnInit {
     public ngOnInit(): void { }
 
     public colorFore: Color = new Color();
+    public colorForeMatch: boolean = false;
+
     public colorBack: Color = new Color();
+    public colorBackMatch: boolean = false;
 
     // ---
     // trigger events
     // ---
 
     public onForeValueChange(value: string) {
+        this.colorForeMatch = this.colorFore.resetColor();
         let color = Match.regexCheckFormat(value);
-
-        this.colorFore.colorUI = null;
         if (color == null) return;
-        this.colorFore.setColor(color);
+        this.colorForeMatch = this.colorFore.setColor(color);
     }
-
     public onBackValueChange(value: string) {
+        this.colorBackMatch = this.colorBack.resetColor();
         let color = Match.regexCheckFormat(value);
-
-        this.colorBack.colorUI = null;
         if (color == null) return;
-        this.colorBack.setColor(color);
+        this.colorBackMatch = this.colorBack.setColor(color);
     }
 
     public openSnackBar() {

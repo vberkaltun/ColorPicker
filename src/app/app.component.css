@@ -18,16 +18,15 @@
     padding: 12px 0px 0px 24px;
 }
 
+::ng-deep .mat-chip {
+    font-family: 'Overpass Mono', monospace !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+}
+
 ::ng-deep .mat-divider {
     margin: 0px 0px 12px 24px !important;
     padding: 0px !important;
-}
-
-::ng-deep .material-icons {
-    font-family: "Material Icons Outlined" !important;
-    font-size: 14px !important;
-    padding-left: 8px !important;
-    color: #212121 !important;
 }
 
 /* MAIN & CONTAINER ------------------------------------------------ */
@@ -101,18 +100,18 @@
 
 /* VALUE CHECK ----------------------------------------------------- */
 
-.isForeNotSet, .isBackNotSet, .isSet {
+.isForeColorNotSet, .isBackColorNotSet, .isColorSet {
     transition: all 0.5s ease;
 }
 
-.isForeNotSet {
+.isForeColorNotSet {
     background: repeating-linear-gradient( -55deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) 5px, rgba(0, 0, 0, 0.30) 5px, rgba(0, 0, 0, 0.30) 10px);
 }
 
-.isBackNotSet {
+.isBackColorNotSet {
     background: repeating-linear-gradient( +55deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) 5px, rgba(0, 0, 0, 0.30) 5px, rgba(0, 0, 0, 0.30) 10px);
 }
 
-.isSet {
+.isColorSet {
     background: transparent;
 }

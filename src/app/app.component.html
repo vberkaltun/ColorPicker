@@ -2,42 +2,42 @@
     <div class="container">
         <div class="input">
             <div class="layer">
-                <div class="back shadow" [style.background]="colorBack.colorUI" [ngClass]="colorBack.colorUI != null ? 'isSet' : 'isBackNotSet'"></div>
-                <div class="fore shadow" [style.background]="colorFore.colorUI" [ngClass]="colorFore.colorUI != null ? 'isSet' : 'isForeNotSet'"></div>
+                <div class="back shadow" [style.background]="colorBack.colorUI" [ngClass]="colorBack.colorUI != null ? 'isColorSet' : 'isBackColorNotSet'"></div>
+                <div class="fore shadow" [style.background]="colorFore.colorUI" [ngClass]="colorFore.colorUI != null ? 'isColorSet' : 'isForeColorNotSet'"></div>
             </div>
         </div>
 
         <div class="settings">
             <div>
-                <mat-form-field appearance="outline" floatLabel="always" autocomplete="off">
+                <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Background color</mat-label>
                     <input matInput #text (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
                 </mat-form-field>
-                <mat-chip-list *ngIf="text  != null">
-                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.hex">{{ colorBack.hex }} <span class="material-icons">file_copy</span></mat-chip>
-                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.rgb">{{ colorBack.rgb }} <span class="material-icons">file_copy</span></mat-chip>
-                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.hsl">{{ colorBack.hsl }} <span class="material-icons">file_copy</span></mat-chip>
+                <mat-chip-list [disabled]="!colorBackMatch">
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.hex" matTooltip="Copy to clipboard">{{ colorBack.hex }}</mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.rgb" matTooltip="Copy to clipboard">{{ colorBack.rgb }}</mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorBack.hsl" matTooltip="Copy to clipboard">{{ colorBack.hsl }}</mat-chip>
                 </mat-chip-list>
             </div>
             <div>
-                <mat-form-field appearance="outline" floatLabel="always" autocomplete="off">
+                <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Foreground color</mat-label>
                     <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format">
                 </mat-form-field>
-                <mat-chip-list>
-                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.hex">{{ colorFore.hex }} <span class="material-icons">file_copy</span></mat-chip>
-                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.rgb">{{ colorFore.rgb }} <span class="material-icons">file_copy</span></mat-chip>
-                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.hsl">{{ colorFore.hsl }} <span class="material-icons">file_copy</span></mat-chip>
+                <mat-chip-list [disabled]="!colorForeMatch">
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.hex" matTooltip="Copy to clipboard">{{ colorFore.hex }}</mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.rgb" matTooltip="Copy to clipboard">{{ colorFore.rgb }}</mat-chip>
+                    <mat-chip (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.hsl" matTooltip="Copy to clipboard">{{ colorFore.hsl }}</mat-chip>
                 </mat-chip-list>
             </div>
             <mat-divider></mat-divider>
 
             <div class="settings">
                 <div>
-                    <mat-chip-list>
-                        <mat-chip color="primary" selected>Pap11111adum</mat-chip>
-                        <mat-chip color="primary" selected>2222S</mat-chip>
-                        <mat-chip color="primary" selected>Dal</mat-chip>
+                    <mat-chip-list [disabled]="!colorForeMatch || !colorBackMatch">
+                        <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.hex" matTooltip="Copy to clipboard">{{ colorFore.hex }}</mat-chip>
+                        <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.rgb" matTooltip="Copy to clipboard">{{ colorFore.rgb }}</mat-chip>
+                        <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorFore.hsl" matTooltip="Copy to clipboard">{{ colorFore.hsl }}</mat-chip>
                     </mat-chip-list>
                 </div>
             </div>
