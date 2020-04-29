@@ -1,5 +1,4 @@
 import * as convert from 'color-convert';
-const rgbHex = require('rgb-hex');
 
 export enum ColorFormat { Idle, HEX, RGB, HSL };
 export class Color {
