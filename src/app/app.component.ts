@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { Color } from './regex.color';
+import { Color, ColorFormat } from './regex.color';
 import { Match } from './regex.match';
 
 export const COLOR_MIN: number = -1;
 export const COLOR_MAX: number = 256;
+
+export const COLOR_BALANCED_MIN: number = 0;
+export const COLOR_BALANCED_MAX: number = 255;
+
+export const ALPHA_MIN: number = 0;
 export const ALPHA_MAX: number = 100;
 
 export enum SearchFormat { Increment, Decrement };
@@ -38,16 +43,17 @@ export class AppComponent implements OnInit {
         let color = Match.regexCheckFormat(value);
         if (color == null) return;
 
-        this.colorFore.setColor(color);
-        //console.log(this.calculateColor(SearchFormat.Increment));
+        this.colorFore.setColor(color[0], color[1]);
+        this.calculateAlphaColorBatch();
     }
+
     public onBackValueChange(value: string) {
         this.colorBack.resetColor();
         let color = Match.regexCheckFormat(value);
         if (color == null) return;
 
-        this.colorBack.setColor(color);
-        //console.log(this.calculateColor(SearchFormat.Increment));
+        this.colorBack.setColor(color[0], color[1]);
+        this.calculateAlphaColorBatch();
     }
 
     public openSnackBar() {
@@ -60,9 +66,14 @@ export class AppComponent implements OnInit {
     // functions 
     // ---
 
-    private calculateColor(type: SearchFormat): number[] {
-        for (let alpha = type == SearchFormat.Increment ? 1 : ALPHA_MAX;
-            type == SearchFormat.Increment ? alpha <= ALPHA_MAX : alpha >= 1;
+    private calculateAlphaColorBatch() {
+        this.calculateAlphaColor(SearchFormat.Increment);
+        this.calculateAlphaColor(SearchFormat.Decrement);
+    }
+
+    private calculateAlphaColor(type: SearchFormat): number[] {
+        for (let alpha = type == SearchFormat.Increment ? ALPHA_MIN : ALPHA_MAX;
+            type == SearchFormat.Increment ? alpha <= ALPHA_MAX : alpha >= ALPHA_MIN;
             type == SearchFormat.Increment ? alpha++ : alpha--) {
 
             let a = alpha / ALPHA_MAX;
@@ -72,17 +83,32 @@ export class AppComponent implements OnInit {
 
             if (type == SearchFormat.Increment ?
                 r < COLOR_MIN || g < COLOR_MIN || b < COLOR_MIN :
-                r < COLOR_MAX && g < COLOR_MAX && b < COLOR_MAX)
+                r < COLOR_MAX && g < COLOR_MAX && b < COLOR_MAX) continue;
+
+            if ((r < COLOR_MIN || r > COLOR_MAX) ||
+                (g < COLOR_MIN || g > COLOR_MAX) ||
+                (b < COLOR_MIN || b > COLOR_MAX))
                 continue;
 
-            r = r == COLOR_MAX ? 255 : r;
-            g = g == COLOR_MAX ? 255 : g;
-            b = b == COLOR_MAX ? 255 : b;
-            r = r == COLOR_MIN ? 0 : r;
-            g = g == COLOR_MIN ? 0 : g;
-            b = b == COLOR_MIN ? 0 : b;
+            if (r == Number.NaN || r == Number.POSITIVE_INFINITY || r == Number.NEGATIVE_INFINITY) break;
+            if (g == Number.NaN || g == Number.POSITIVE_INFINITY || g == Number.NEGATIVE_INFINITY) break;
+            if (b == Number.NaN || b == Number.POSITIVE_INFINITY || b == Number.NEGATIVE_INFINITY) break;
 
-            return [r, g, b, a];
+            r = Math.floor(r);
+            g = Math.floor(g);
+            b = Math.floor(b);
+
+            r = r == COLOR_MAX ? COLOR_BALANCED_MAX : r;
+            g = g == COLOR_MAX ? COLOR_BALANCED_MAX : g;
+            b = b == COLOR_MAX ? COLOR_BALANCED_MAX : b;
+
+            r = r == COLOR_MIN ? COLOR_BALANCED_MIN : r;
+            g = g == COLOR_MIN ? COLOR_BALANCED_MIN : g;
+            b = b == COLOR_MIN ? COLOR_BALANCED_MIN : b;
+
+            this.colorAlpha.setColorBatch(ColorFormat.RGB, [r, g, b, a]);
+            console.log("rgb(" + r + ", " + g + ", " + b + ", " + a + ")");
+            return;
         }
     }
 }

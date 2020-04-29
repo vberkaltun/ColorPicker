@@ -19,9 +19,10 @@ export class Color {
     private readonly regexJustHSL: RegExp = /^\s*(([0-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|360)\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]|[1-9][0-9]|100)\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]|[1-9][0-9]|100)\s*([°]|[%])?)\s*$/g;
 
     // default colors
-    private readonly defaultHEX = "000000";
-    private readonly defaultRGB = [0, 0, 0];
-    private readonly defaultHSL = [0, 0, 0];
+    private readonly defaultTransparent = 0.75;
+    private readonly defaultHEX = "FF000000";
+    private readonly defaultRGB = [0, 0, 0, 1];
+    private readonly defaultHSL = [0, 0, 0, 1];
 
     public _hex: any = this.defaultHEX;
     public _rgb: any = this.defaultRGB;
@@ -31,8 +32,12 @@ export class Color {
     public get hex(): string { return "#" + this._hex; }
     public get rgb(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ")"; }
     public get hsl(): string { return "hsl(" + this._hsl[0] + ", " + this._hsl[1] + ", " + this._hsl[2] + ")"; }
-    public get gui(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ",0.75)"; }
+    public get gui(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this.defaultTransparent + ")"; }
     public get isColorSet(): boolean { return this._isColorSet; }
+
+    // this two are additional
+    public get rgbWithAlpha(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this._rgb[3] + ")"; }
+    public get hslWithAlpha(): string { return "hsl(" + this._hsl[0] + ", " + this._hsl[1] + ", " + this._hsl[2] + ", " + this._hsl[3] + ")"; }
 
     // ---
     // public functions
@@ -46,30 +51,30 @@ export class Color {
         this._isColorSet = false;
     }
 
-    public setColor(value: [ColorFormat, string]) {
+    public setColor(type: ColorFormat, value: any) {
         // first reset all color values to default
         this.resetColor();
 
         // reflection solution
-        let main = new RegExp(this?.["regexJust" + ColorFormat[value[0]]]).exec(value[1]);
+        let main = new RegExp(this?.["regexJust" + ColorFormat[type]]).exec(value);
         if (main == null) return;
 
-        switch (value[0]) {
+        switch (type) {
             case ColorFormat.HEX:
-                this.setColorBatch(value[0], main[1]);
+                this.setColorBatch(type, main[1]);
                 break;
             case ColorFormat.RGB:
-                this.setColorBatch(value[0], [main[2], main[4], main[6]]);
+                this.setColorBatch(type, [main[2], main[4], main[6], 1]);
                 break;
             case ColorFormat.HSL:
-                this.setColorBatch(value[0], [main[2], main[5], main[8]]);
+                this.setColorBatch(type, [main[2], main[5], main[8], 1]);
                 break;
         }
 
         this._isColorSet = true;
     }
 
-    private setColorBatch(type: ColorFormat, value: any) {
+    public setColorBatch(type: ColorFormat, value: any) {
         // scan all enum values, except of idle case
         for (let item in ColorFormat) {
             if (isNaN(Number(item))) continue;
