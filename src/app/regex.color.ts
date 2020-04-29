@@ -1,4 +1,5 @@
 import * as convert from 'color-convert';
+const rgbHex = require('rgb-hex');
 
 export enum ColorFormat { Idle, HEX, RGB, HSL };
 export class Color {
@@ -20,7 +21,7 @@ export class Color {
 
     // default colors
     private readonly defaultTransparent = 0.75;
-    private readonly defaultHEX = "FF000000";
+    private readonly defaultHEX = "000000";
     private readonly defaultRGB = [0, 0, 0, 1];
     private readonly defaultHSL = [0, 0, 0, 1];
 
@@ -35,9 +36,10 @@ export class Color {
     public get gui(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this.defaultTransparent + ")"; }
     public get isColorSet(): boolean { return this._isColorSet; }
 
-    // this two are additional
+    // this three are additional for result box
+    public get hexWithAlpha(): string { return "#" + (Math.round(this._rgb[3] * 255) + 0x10000).toString(16).substr(-2).toUpperCase() + this._hex; }
     public get rgbWithAlpha(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this._rgb[3] + ")"; }
-    public get hslWithAlpha(): string { return "hsl(" + this._hsl[0] + ", " + this._hsl[1] + ", " + this._hsl[2] + ", " + this._hsl[3] + ")"; }
+    public get hslWithAlpha(): string { return "hsl(" + this._hsl[0] + ", " + this._hsl[1] + ", " + this._hsl[2] + ", " + this._rgb[3] + ")"; }
 
     // ---
     // public functions

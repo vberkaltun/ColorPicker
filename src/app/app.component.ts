@@ -67,11 +67,14 @@ export class AppComponent implements OnInit {
     // ---
 
     private calculateAlphaColorBatch() {
-        this.calculateAlphaColor(SearchFormat.Increment);
-        this.calculateAlphaColor(SearchFormat.Decrement);
+        if (!this.calculateAlphaColor(SearchFormat.Increment))
+            this.calculateAlphaColor(SearchFormat.Decrement);
     }
 
-    private calculateAlphaColor(type: SearchFormat): number[] {
+    private calculateAlphaColor(type: SearchFormat): boolean {
+        // first reset all color values to default
+        this.colorAlpha.resetColor();
+
         for (let alpha = type == SearchFormat.Increment ? ALPHA_MIN : ALPHA_MAX;
             type == SearchFormat.Increment ? alpha <= ALPHA_MAX : alpha >= ALPHA_MIN;
             type == SearchFormat.Increment ? alpha++ : alpha--) {
@@ -81,6 +84,7 @@ export class AppComponent implements OnInit {
             let g = (this.colorFore._rgb[1] - this.colorBack._rgb[1] + (this.colorBack._rgb[1] * a)) / a;
             let b = (this.colorFore._rgb[2] - this.colorBack._rgb[2] + (this.colorBack._rgb[2] * a)) / a;
 
+            // yes, I know it is looking veey bad but there is no another way...
             if (type == SearchFormat.Increment ?
                 r < COLOR_MIN || g < COLOR_MIN || b < COLOR_MIN :
                 r < COLOR_MAX && g < COLOR_MAX && b < COLOR_MAX) continue;
@@ -107,8 +111,11 @@ export class AppComponent implements OnInit {
             b = b == COLOR_MIN ? COLOR_BALANCED_MIN : b;
 
             this.colorAlpha.setColorBatch(ColorFormat.RGB, [r, g, b, a]);
-            console.log("rgb(" + r + ", " + g + ", " + b + ", " + a + ")");
-            return;
+            if (this.colorAlpha.rgb == this.colorFore.rgb) break;
+            return this.colorAlpha._isColorSet = true;
         }
+
+        // worst case
+        return false;
     }
-}
+} 

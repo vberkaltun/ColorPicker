@@ -33,8 +33,10 @@
             <mat-divider></mat-divider>
 
             <div class="settings">
-                <mat-chip-list [disabled]="!colorFore.isColorSet || !colorBack.isColorSet">
-                    <mat-chip color="accent" selected (click)="colorFore.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorFore.rgb" matTooltip="{{ colorFore.isColorSet ? 'Copy RGB value to clipboard' : null }}">{{ colorAlpha.rgbWithAlpha }}</mat-chip>
+                <mat-chip-list [disabled]="!colorAlpha.isColorSet">
+                    <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.hexWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorAlpha.hexWithAlpha }}</mat-chip>
+                    <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.rgbWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy RGB value to clipboard' : null }}">{{ colorAlpha.rgbWithAlpha }}</mat-chip>
+                    <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.hslWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy HSL value to clipboard' : null }}">{{ colorAlpha.hslWithAlpha }}</mat-chip>
                 </mat-chip-list>
             </div>
         </div>
