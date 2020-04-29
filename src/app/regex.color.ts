@@ -7,12 +7,6 @@ export class Color {
     // variables and const
     // ---
 
-    // default colors
-    private readonly defaultHEX = "#000000";
-    private readonly defaultRGB = "rgb(0, 0, 0)";
-    private readonly defaultHSL = "rgb(0, 0, 0)";
-    private readonly defaultColorUI = "rgb(0, 0, 0, 0.75)";
-
     // INDEX 1: HEX
     private readonly regexJustHEX: RegExp = /^\s*(([a-fA-F0-9]{3}){1,2})\s*$/g;
     // INDEX 2: DIGIT 1, R
@@ -24,25 +18,34 @@ export class Color {
     // INDEX 8: DIGIT 3, B
     private readonly regexJustHSL: RegExp = /^\s*(([0-9]|[1-9][0-9]|[1-2][0-9][0-9]|3[0-5][0-9]|360)\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]|[1-9][0-9]|100)\s*([°]|[%])?\s*(\s+|[,]|[;])\s*([0-9]|[1-9][0-9]|100)\s*([°]|[%])?)\s*$/g;
 
-    public hex: string = this.defaultHEX;
-    public rgb: string = this.defaultRGB;
-    public hsl: string = this.defaultHSL;
+    // default colors
+    private readonly defaultHEX = "000000";
+    private readonly defaultRGB = [0, 0, 0];
+    private readonly defaultHSL = [0, 0, 0];
 
-    public colorUI: string = this.defaultColorUI;
-    public isColorSet: boolean = false;
+    public _hex: any = this.defaultHEX;
+    public _rgb: any = this.defaultRGB;
+    public _hsl: any = this.defaultHSL;
+    public _isColorSet: any = false;
+
+    public get hex(): string { return "#" + this._hex; }
+    public get rgb(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ")"; }
+    public get hsl(): string { return "hsl(" + this._hsl[0] + ", " + this._hsl[1] + ", " + this._hsl[2] + ")"; }
+    public get gui(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ",0.75)"; }
+    public get isColorSet(): boolean { return this._isColorSet; }
 
     // ---
     // public functions
     // ---
 
     public resetColor() {
-        this.hex = this.defaultHEX;
-        this.rgb = this.defaultRGB;
-        this.hsl = this.defaultHSL;
+        this._hex = this.defaultHEX;
+        this._rgb = this.defaultRGB;
+        this._hsl = this.defaultHSL;
 
-        this.colorUI = this.defaultColorUI;
-        this.isColorSet = false;
+        this._isColorSet = false;
     }
+
     public setColor(value: [ColorFormat, string]) {
         // first reset all color values to default
         this.resetColor();
@@ -63,35 +66,33 @@ export class Color {
                 break;
         }
 
-        this.isColorSet = true;
+        this._isColorSet = true;
     }
 
     private setColorBatch(type: ColorFormat, value: any) {
-        this.setNumericHEX(type, value);
-        this.setNumericRGB(type, value);
-        this.setNumericHSL(type, value);
-    }
+        // scan all enum values, except of idle case
+        for (let item in ColorFormat) {
+            if (isNaN(Number(item))) continue;
+            if (item == ColorFormat.Idle.toString()) continue;
 
-    // ---
-    // regex calculations
-    // ---
+            try {
+                let result = value;
+                if (ColorFormat[type].toLowerCase() != ColorFormat[item].toLowerCase())
+                    result = convert?.[ColorFormat[type].toLowerCase()]?.[ColorFormat[item].toLowerCase()](value);
 
-    private setNumericHEX(type: ColorFormat, value: any) {
-        try { value = convert?.[ColorFormat[type].toLowerCase()].hex(value); }
-        catch (Exception) { }
-        this.hex = "#" + value;
-    }
-    private setNumericRGB(type: ColorFormat, value: any) {
-        try { value = convert?.[ColorFormat[type].toLowerCase()].rgb(value) }
-        catch (Exception) { }
-        this.rgb = "rgb(" + value[0] + ", " + value[1] + ", " + value[2] + ")";
-
-        // this will be applied to UI color
-        this.colorUI = "rgb(" + value[0] + ", " + value[1] + ", " + value[2] + ", 0.75)";
-    }
-    private setNumericHSL(type: ColorFormat, value: any) {
-        try { value = convert?.[ColorFormat[type].toLowerCase()].hsl(value) }
-        catch (Exception) { }
-        this.hsl = "hsl(" + value[0] + ", " + value[1] + "%, " + value[2] + "%)";
+                switch (ColorFormat[ColorFormat[item]]) {
+                    case ColorFormat.HEX:
+                        this._hex = result;
+                        break;
+                    case ColorFormat.RGB:
+                        this._rgb = result;
+                        break;
+                    case ColorFormat.HSL:
+                        this._hsl = result;
+                        break;
+                }
+            }
+            catch (Exception) { }
+        }
     }
 }
