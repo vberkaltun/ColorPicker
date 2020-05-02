@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MatRipple } from '@angular/material/core';
 
 import { Color, ColorFormat } from './regex.color';
 import { Match } from './regex.match';
@@ -27,14 +27,15 @@ export class AppComponent implements OnInit {
     // variables and const
     // ---
 
+    @ViewChild(MatRipple) ripple: MatRipple;
     public title = 'RGB to RGBA ColorPicker';
-    public constructor(private snackBar: MatSnackBar, private sanitizer: DomSanitizer) { }
+    public constructor(private snackBar: MatSnackBar) { }
     public ngOnInit(): void { }
 
     public colorFore: Color = new Color();
     public colorBack: Color = new Color();
     public colorAlpha: Color = new Color();
-    
+
     // ---
     // trigger events
     // ---
@@ -61,6 +62,10 @@ export class AppComponent implements OnInit {
         this.snackBar.open("Copied to clipboard!", "OK", {
             duration: 2000,
         });
+    }
+
+    public onRippleEffect() {
+        this.ripple.launch({ centered: true });
     }
 
     // ---
@@ -113,6 +118,7 @@ export class AppComponent implements OnInit {
 
             this.colorAlpha.setColorBatch(ColorFormat.RGB, [r, g, b, a]);
             if (this.colorAlpha.rgb == this.colorFore.rgb) break;
+            this.onRippleEffect();
             return this.colorAlpha._isColorSet = true;
         }
 

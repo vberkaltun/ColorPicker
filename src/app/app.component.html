@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(255, 255, 255, 0.5)">
     <div class="container">
         <div class="input">
             <div class="layer">
@@ -8,7 +8,7 @@
         </div>
 
         <div class="settings">
-            <div class="section">
+            <div>
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Background Color</mat-label>
                     <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="255,0,0">
@@ -19,7 +19,7 @@
                     <mat-chip (click)="colorBack.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorBack.hsl" matTooltip="{{ colorBack.isColorSet ? 'Copy HSL value to clipboard' : null }}">{{ colorBack.hsl }}</mat-chip>
                 </mat-chip-list>
             </div>
-            <div class="section">
+            <div>
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Foreground Color</mat-label>
                     <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="255,128,128">
@@ -30,14 +30,8 @@
                     <mat-chip (click)="colorFore.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorFore.hsl" matTooltip="{{ colorFore.isColorSet ? 'Copy HSL value to clipboard' : null }}">{{ colorFore.hsl }}</mat-chip>
                 </mat-chip-list>
             </div>
-
             <mat-divider></mat-divider>
-            <div class="infobar">
-                <mat-label >You can use these unique color value which contains alpha level as well instead of the non-alpha color values. 
-                    In this way, your page can affect the color dynamically if there is any change in your source code.</mat-label>
-            </div>
-
-            <div class="section">
+            <div>
                 <mat-chip-list [disabled]="!colorAlpha.isColorSet">
                     <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.hexWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorAlpha.hexWithAlpha }}</mat-chip>
                     <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.rgbWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy RGB value to clipboard' : null }}">{{ colorAlpha.rgbWithAlpha }}</mat-chip>
