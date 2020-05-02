@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Color, ColorFormat } from './regex.color';
 import { Match } from './regex.match';
@@ -27,13 +28,13 @@ export class AppComponent implements OnInit {
     // ---
 
     public title = 'RGB to RGBA ColorPicker';
-    public constructor(private snackBar: MatSnackBar) { }
+    public constructor(private snackBar: MatSnackBar, private sanitizer: DomSanitizer) { }
     public ngOnInit(): void { }
 
     public colorFore: Color = new Color();
     public colorBack: Color = new Color();
     public colorAlpha: Color = new Color();
-
+    
     // ---
     // trigger events
     // ---
