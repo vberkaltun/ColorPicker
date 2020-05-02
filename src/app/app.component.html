@@ -11,7 +11,7 @@
             <div>
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Background Color</mat-label>
-                    <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="255,0,0">
+                    <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="255, 0, 0">
                 </mat-form-field>
                 <mat-chip-list [disabled]="!colorBack.isColorSet">
                     <mat-chip (click)="colorBack.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorBack.hex" matTooltip="{{ colorBack.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorBack.hex }}</mat-chip>
@@ -22,7 +22,7 @@
             <div>
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Foreground Color</mat-label>
-                    <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="255,128,128">
+                    <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="255, 128, 0">
                 </mat-form-field>
                 <mat-chip-list [disabled]="!colorFore.isColorSet">
                     <mat-chip (click)="colorFore.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorFore.hex" matTooltip="{{ colorFore.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorFore.hex }}</mat-chip>
@@ -30,8 +30,12 @@
                     <mat-chip (click)="colorFore.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorFore.hsl" matTooltip="{{ colorFore.isColorSet ? 'Copy HSL value to clipboard' : null }}">{{ colorFore.hsl }}</mat-chip>
                 </mat-chip-list>
             </div>
+
             <mat-divider></mat-divider>
             <div>
+                <div class="infobar">
+                    <mat-label>Alpha Applied Color</mat-label>
+                </div>
                 <mat-chip-list [disabled]="!colorAlpha.isColorSet">
                     <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.hexWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorAlpha.hexWithAlpha }}</mat-chip>
                     <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.rgbWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy RGB value to clipboard' : null }}">{{ colorAlpha.rgbWithAlpha }}</mat-chip>

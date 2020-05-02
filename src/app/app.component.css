@@ -41,7 +41,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-
 }
 
 .container {
@@ -56,6 +55,18 @@
     /* side-by-side: inline-grid */
     display: grid;
     padding: 0px 0px 24px 0px;
+}
+
+/* INFOBAR --------------------------------------------------------- */
+
+.infobar {
+    margin-left: 0.75em;
+    padding: 8px 0px 0px 24px;
+}
+
+.infobar * {
+    font-size: 75%;
+    color: rgba(0, 0, 0, .6);
 }
 
 /* LAYERS ---------------------------------------------------------- */

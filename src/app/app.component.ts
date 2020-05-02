@@ -41,7 +41,10 @@ export class AppComponent implements OnInit {
     // ---
 
     public onForeValueChange(value: string) {
+        // first reset all color values to default
         this.colorFore.resetColor();
+        this.colorAlpha.resetColor();
+
         let color = Match.regexCheckFormat(value);
         if (color == null) return;
 
@@ -50,7 +53,10 @@ export class AppComponent implements OnInit {
     }
 
     public onBackValueChange(value: string) {
+        // first reset all color values to default
         this.colorBack.resetColor();
+        this.colorAlpha.resetColor();
+        
         let color = Match.regexCheckFormat(value);
         if (color == null) return;
 
@@ -65,7 +71,9 @@ export class AppComponent implements OnInit {
     }
 
     public onRippleEffect() {
-        this.ripple.launch({ centered: true });
+        this.ripple.launch({
+            centered: true,
+        });
     }
 
     // ---
@@ -78,9 +86,6 @@ export class AppComponent implements OnInit {
     }
 
     private calculateAlphaColor(type: SearchFormat): boolean {
-        // first reset all color values to default
-        this.colorAlpha.resetColor();
-
         for (let alpha = type == SearchFormat.Increment ? ALPHA_MIN : ALPHA_MAX;
             type == SearchFormat.Increment ? alpha <= ALPHA_MAX : alpha >= ALPHA_MIN;
             type == SearchFormat.Increment ? alpha++ : alpha--) {
@@ -118,6 +123,7 @@ export class AppComponent implements OnInit {
 
             this.colorAlpha.setColorBatch(ColorFormat.RGB, [r, g, b, a]);
             if (this.colorAlpha.rgb == this.colorFore.rgb) break;
+
             this.onRippleEffect();
             return this.colorAlpha._isColorSet = true;
         }
