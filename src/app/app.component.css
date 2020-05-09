@@ -36,10 +36,8 @@
 /* MAIN & CONTAINER ------------------------------------------------ */
 
 .main {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    width: fit-content;
+    margin: 0px auto;
     padding: 20px;
 }
 
@@ -66,7 +64,7 @@
 
 .infobar * {
     font-size: 75%;
-    color: rgba(0, 0, 0, .6);
+    color: rgba(255, 255, 255, .6);
 }
 
 /* LAYERS ---------------------------------------------------------- */
@@ -106,13 +104,13 @@
 
 .input .layer .fore {
     margin: 16px 0px 0px 16px;
-    /* background-color: rgba(0, 0, 0, 0.7); */
+    /* background-color: rgba(255, 255, 255, 0.7); */
 }
 
 /* SHADOW ---------------------------------------------------------- */
 
 .shadow {
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25), 0px 20px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.05), 0px 20px 20px rgba(255, 255, 255, 0.10);
 }
 
 /* VALUE CHECK ----------------------------------------------------- */
@@ -122,14 +120,66 @@
 }
 
 .isForeColorNotSet {
-    background: repeating-linear-gradient( -45deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) 5px, rgba(0, 0, 0, 0.30) 5px, rgba(0, 0, 0, 0.30) 10px);
+    background: repeating-linear-gradient( -45deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25) 5px, rgba(255, 255, 255, 0.30) 5px, rgba(255, 255, 255, 0.30) 10px);
     /* background: linear-gradient(45deg, rgba(2, 0, 36, 1) 0%, rgba(0, 212, 255, 0.75) 100%) */
 }
 
 .isBackColorNotSet {
-    background: repeating-linear-gradient( +45deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) 5px, rgba(0, 0, 0, 0.30) 5px, rgba(0, 0, 0, 0.30) 10px);
+    background: repeating-linear-gradient( +45deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25) 5px, rgba(255, 255, 255, 0.30) 5px, rgba(255, 255, 255, 0.30) 10px);
 }
 
 .isColorSet {
     background: transparent;
+}
+
+/* COLOR PATCH ----------------------------------------------------- */
+
+/* toolbar */
+
+::ng-deep .mat-toolbar {
+    background-color: #000000 !important;
+}
+
+/* header */
+
+::ng-deep .mat-tab-header {
+    background-color: #212121 !important;
+}
+
+/* selected */
+
+::ng-deep .mat-chip-selected {
+    background-color: #1b1b1b !important;
+    color: #00bf7e !important;
+}
+
+::ng-deep .info .mat-chip-selected {
+    background-color: #00bf7e !important;
+    color: #1b1b1b !important;
+}
+
+/* input */
+
+::ng-deep .mat-form-field-appearance-outline {
+    color: rgba(255, 255, 255, .70) !important;
+}
+
+::ng-deep .mat-form-field-label, .infobar * {
+    color: rgba(255, 255, 255, .35) !important;
+}
+
+/* outline */
+
+::ng-deep .mat-form-field-outline {
+    color: #212121 !important;
+}
+
+::ng-deep .mat-form-field-outline-thick {
+    color: rgba(255, 255, 255, .35) !important;
+}
+
+/* caret */
+
+::ng-deep .mat-input-element {
+    caret-color: rgba(255, 255, 255, .70) !important;
 }
