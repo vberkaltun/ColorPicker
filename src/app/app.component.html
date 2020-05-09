@@ -31,15 +31,17 @@
                 </mat-chip-list>
             </div>
 
-            <mat-divider></mat-divider>
             <div>
                 <div class="infobar">
                     <mat-label>Alpha Applied Color</mat-label>
                 </div>
-                <mat-chip-list [disabled]="!colorAlpha.isColorSet">
-                    <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.hexWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorAlpha.hexWithAlpha }}</mat-chip>
-                    <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.rgbWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy RGB value to clipboard' : null }}">{{ colorAlpha.rgbWithAlpha }}</mat-chip>
-                    <mat-chip color="accent" selected (click)="colorAlpha.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorAlpha.hslWithAlpha" matTooltip="{{ colorAlpha.isColorSet ? 'Copy HSL value to clipboard' : null }}">{{ colorAlpha.hslWithAlpha }}</mat-chip>
+                <mat-chip-list *ngIf="colorAlpha.isColorSet">
+                    <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hexWithAlpha" matTooltip="Copy HEX value to clipboard">{{ colorAlpha.hexWithAlpha }}</mat-chip>
+                    <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.rgbWithAlpha" matTooltip="Copy RGB value to clipboard">{{ colorAlpha.rgbWithAlpha }}</mat-chip>
+                    <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hslWithAlpha" matTooltip="Copy HSL value to clipboard">{{ colorAlpha.hslWithAlpha }}</mat-chip>
+                </mat-chip-list>
+                <mat-chip-list *ngIf="!colorAlpha.isColorSet">
+                    <mat-chip color="accent" selected>An alpha color format can not apply to current color sets!</mat-chip>
                 </mat-chip-list>
             </div>
         </div>
