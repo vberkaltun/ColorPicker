@@ -19,7 +19,7 @@
 }
 
 ::ng-deep .mat-chip {
-    font-family: 'Overpass Mono', monospace !important;
+    font-family: "Overpass Mono", monospace !important;
     font-size: 12px !important;
     font-weight: 700 !important;
 }
@@ -38,7 +38,7 @@
 .main {
     width: fit-content;
     margin: 0px auto;
-    padding: 20px;
+    padding: 150px 20px 20px 20px;
 }
 
 .container {
@@ -96,13 +96,9 @@
     border-radius: 8px;
 }
 
-/* FORE & BACK ----------------------------------------------------- */
+/* FORE ------------------------------------------------------------ */
 
-.input .layer .back {
-    /* background-color: #ffffff; */
-}
-
-.input .layer .fore {
+.fore {
     margin: 16px 0px 0px 16px;
     /* background-color: rgba(255, 255, 255, 0.7); */
 }
@@ -130,4 +126,49 @@
 
 .isColorSet {
     background: transparent;
+}
+
+/* COLOR PATCH ----------------------------------------------------- */
+
+/* toolbar */
+
+::ng-deep .mat-toolbar {
+    background-color: #1b1b1b !important;
+    color: #00bf7e !important;
+}
+
+/* header */
+
+::ng-deep .mat-tab-header {
+    background-color: black !important;
+}
+
+::ng-deep .mat-tab-label {
+    color: rgba(255, 255, 255, .80) !important;
+}
+
+/* selected */
+
+::ng-deep .mat-chip {
+    background-color: rgba(255, 255, 255, .20) !important;
+    color: #00bf7e !important;
+}
+
+::ng-deep .info .mat-chip {
+    background-color: #00bf7e !important;
+    color: rgba(0, 0, 0, .80) !important;
+}
+
+/* input */
+
+::ng-deep .mat-form-field {
+    font-family: "Overpass Mono", monospace !important;
+}
+
+::ng-deep .mat-form-field-outline {
+    color: rgba(255, 255, 255, .20) !important;
+}
+
+::ng-deep .mat-form-field-label, .infobar * {
+    color: rgba(255, 255, 255, .80) !important;
 }

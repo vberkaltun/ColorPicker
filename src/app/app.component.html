@@ -2,9 +2,9 @@
 <mat-tab-group color="accent" backgroundColor="accent" mat-align-tabs="end">
     <mat-tab label="Alpha Color Converter"></mat-tab>
     <mat-tab label="Unit Batch for CSS"></mat-tab>
-  </mat-tab-group>
+</mat-tab-group>
   
-<div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(0, 0, 0, .70)">
+<div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(0, 0, 0, .50)">
     <div class="container">
         <div class="input">
             <div class="layer">
@@ -41,13 +41,13 @@
                 <div class="infobar">
                     <mat-label>Alpha Applied Color</mat-label>
                 </div>
-                <mat-chip-list *ngIf="colorAlpha.isColorSet">
+                <mat-chip-list class="info" *ngIf="colorAlpha.isColorSet">
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hexWithAlpha" matTooltip="Copy HEX value to clipboard">{{ colorAlpha.hexWithAlpha }}</mat-chip>
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.rgbWithAlpha" matTooltip="Copy RGB value to clipboard">{{ colorAlpha.rgbWithAlpha }}</mat-chip>
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hslWithAlpha" matTooltip="Copy HSL value to clipboard">{{ colorAlpha.hslWithAlpha }}</mat-chip>
                 </mat-chip-list>
-                <mat-chip-list *ngIf="!colorAlpha.isColorSet">
-                    <mat-chip color="accent" selected>An alpha color format can not apply to current color sets!</mat-chip>
+                <mat-chip-list class="info" *ngIf="!colorAlpha.isColorSet">
+                    <mat-chip color="accent" selected>An alpha color format can not apply to these color sets!</mat-chip>
                 </mat-chip-list>
             </div>
         </div>
