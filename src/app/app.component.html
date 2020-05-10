@@ -1,4 +1,3 @@
-<mat-toolbar color="accent" style="background-color: #323232">Color Picker APP</mat-toolbar>
 <mat-tab-group color="accent" backgroundColor="accent" mat-align-tabs="end">
     <mat-tab label="Alpha Color Converter"></mat-tab>
     <mat-tab label="Unit Batch for CSS"></mat-tab>
@@ -28,7 +27,7 @@
             <div>
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Foreground Color</mat-label>
-                    <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="255, 128, 0">
+                    <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="128,0,64">
                 </mat-form-field>
                 <mat-chip-list [disabled]="!colorFore.isColorSet">
                     <mat-chip (click)="colorFore.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorFore.hex" matTooltip="{{ colorFore.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorFore.hex }}</mat-chip>

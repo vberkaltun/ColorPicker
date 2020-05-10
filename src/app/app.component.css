@@ -130,13 +130,6 @@
 
 /* COLOR PATCH ----------------------------------------------------- */
 
-/* toolbar */
-
-::ng-deep .mat-toolbar {
-    background-color: #1b1b1b !important;
-    color: #00bf7e !important;
-}
-
 /* header */
 
 ::ng-deep .mat-tab-header {
@@ -147,16 +140,30 @@
     color: rgba(255, 255, 255, .80) !important;
 }
 
+::ng-deep .mat-ink-bar {
+    background-color: #00bf7e !important;
+}
+
+/* chevron */
+
+::ng-deep .mat-tab-header-pagination {
+    background-color: rgba(255, 255, 255, .10) !important;
+}
+
+::ng-deep .mat-tab-header-pagination-chevron {
+    border-color: #00bf7e !important;
+}
+
 /* selected */
 
 ::ng-deep .mat-chip {
-    background-color: rgba(255, 255, 255, .20) !important;
+    background-color: rgba(255, 255, 255, .00) !important;
     color: #00bf7e !important;
 }
 
 ::ng-deep .info .mat-chip {
-    background-color: #00bf7e !important;
-    color: rgba(0, 0, 0, .80) !important;
+    background-color: rgba(255, 255, 255, .20) !important;
+    color: #00bf7e !important;
 }
 
 /* input */
@@ -170,5 +177,5 @@
 }
 
 ::ng-deep .mat-form-field-label, .infobar * {
-    color: rgba(255, 255, 255, .80) !important;
+    color: rgba(255, 255, 255, .60) !important;
 }
