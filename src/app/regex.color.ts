@@ -20,25 +20,43 @@ export class Color {
 
     // default colors
     private readonly defaultTransparent = 0.75;
+    private readonly defaultGrayScaleAlpha = 0.0;
     private readonly defaultHEX = "000000";
     private readonly defaultRGB = [0, 0, 0, 1];
     private readonly defaultHSL = [0, 0, 0, 1];
 
+    // ---
+
     public _hex: any = this.defaultHEX;
     public _rgb: any = this.defaultRGB;
     public _hsl: any = this.defaultHSL;
-    public _isColorSet: any = false;
 
     public get hex(): string { return "#" + this._hex; }
     public get rgb(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ")"; }
     public get hsl(): string { return "hsl(" + this._hsl[0] + ", " + this._hsl[1] + ", " + this._hsl[2] + ")"; }
-    public get gui(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this.defaultTransparent + ")"; }
-    public get isColorSet(): boolean { return this._isColorSet; }
 
     // this three are additional for result box
     public get hexWithAlpha(): string { return "#" + (Math.round(this._rgb[3] * 255) + 0x10000).toString(16).substr(-2).toUpperCase() + this._hex; }
     public get rgbWithAlpha(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this._rgb[3] + ")"; }
     public get hslWithAlpha(): string { return "hsl(" + this._hsl[0] + ", " + this._hsl[1] + ", " + this._hsl[2] + ", " + this._rgb[3] + ")"; }
+
+    // grayscale
+    public get hexWithGrayScale(): string { return "#" + (Math.round(this._grayScale * 255) + 0x10000).toString(16).substr(-2).toUpperCase() + "FFFFFF"; }
+    public get rgbWithGrayScale(): string { return "rgb(255, 255, 255, " + this._grayScale + ")"; }
+    public get hslWithGrayScale(): string { return "hsl(0, 0, 100, " + this._grayScale + ")"; }
+
+    // ui color hotfix
+    public get gui(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this.defaultTransparent + ")"; }
+
+    // ---
+
+    public _grayScale: any = this.defaultGrayScaleAlpha;
+    public _isGrayScale: any = false;
+    public _isColorSet: any = false;
+
+    public get grayScale(): boolean { return this._rgb[0] == this._rgb[1] && this._rgb[0] == this._rgb[2]; }
+    public get isGrayScale(): boolean { return this._isGrayScale; }
+    public get isColorSet(): boolean { return this._isColorSet; }
 
     // ---
     // public functions
@@ -49,6 +67,8 @@ export class Color {
         this._rgb = this.defaultRGB;
         this._hsl = this.defaultHSL;
 
+        this._grayScale = this.defaultGrayScaleAlpha;
+        this._isGrayScale = false;
         this._isColorSet = false;
     }
 
