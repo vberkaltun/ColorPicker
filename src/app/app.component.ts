@@ -37,8 +37,8 @@ export class AppComponent implements OnInit {
     public colorBack: Color = new Color();
     public colorAlpha: Color = new Color();
 
-    public inputFore: string = '128, 0, 64';
-    public inputBack: string = '255, 0, 0';
+    public inputFore: string = '25, 25, 25';
+    public inputBack: string = '0, 0, 0';
 
     // ---
     // trigger events
@@ -129,6 +129,9 @@ export class AppComponent implements OnInit {
     private calculateAlphaColorBatch() {
         if (!this.calculateAlphaColor(SearchFormat.Increment))
             this.calculateAlphaColor(SearchFormat.Decrement);
+
+        // grayscale check
+        this.calculateGrayScaleAlphaColor();
     }
 
     private calculateAlphaColor(type: SearchFormat): boolean {
@@ -173,6 +176,20 @@ export class AppComponent implements OnInit {
             console.log("Color OK:" + [r, g, b, a]);
             this.onRippleEffect();
             return this.colorAlpha._isColorSet = true;
+        }
+
+        // worst case
+        return false;
+    }
+
+    private calculateGrayScaleAlphaColor(): boolean {
+        // make grayscale calculation
+        if (this.colorFore.grayScale && this.colorBack.grayScale) {
+            let a = ((255 - this.colorBack._rgb[0]) / (this.colorFore._rgb[0] - this.colorBack._rgb[0]) / 100).toFixed(2);
+            this.colorAlpha._grayScale = a;
+
+            console.log("GrayScale OK:" + [255, 255, 255, a]);
+            return this.colorAlpha._isGrayScale = true;
         }
 
         // worst case

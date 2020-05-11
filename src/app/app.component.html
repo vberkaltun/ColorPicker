@@ -8,12 +8,12 @@
     <span><a target="_blank" href="https://vberkaltun.com/">Contact</a></span>
 </mat-toolbar>
   
-<div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(0, 0, 0, 0.50)">
+<div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(0, 0, 0, 0.10)">
     <div class="container">
         <div class="input">
             <div class="layer">
                 <div class="back shadow" [ngStyle]="colorBack.isColorSet ? { 'background' : colorBack.gui } : null" [ngClass]="colorBack.isColorSet ? 'isColorSet' : 'isBackColorNotSet'"></div>
-                <div class="fore shadow" [ngStyle]="colorFore.isColorSet ? ( colorAlpha.isColorSet ? { background : 'linear-gradient(45deg,' + colorFore.rgb + ' 0%, ' + colorAlpha.rgbWithAlpha + ' 100%)' } : { 'background' : colorFore.gui } ) : null" [ngClass]="colorFore.isColorSet ? 'isColorSet' : 'isForeColorNotSet'"></div>
+                <div class="fore shadow" [ngStyle]="colorFore.isColorSet ? ( colorAlpha.isColorSet ? { background : 'linear-gradient(45deg,' + colorFore.rgb + ' 15%, ' + colorAlpha.rgbWithAlpha + ' 100%)' } : { 'background' : colorFore.gui } ) : null" [ngClass]="colorFore.isColorSet ? 'isColorSet' : 'isForeColorNotSet'"></div>
             </div>
         </div>
 
@@ -49,12 +49,22 @@
                 <div class="infobar">
                     <mat-label>Alpha Applied Color</mat-label>
                 </div>
-                <mat-chip-list class="info" *ngIf="colorAlpha.isColorSet">
+                <mat-chip-list class="info" *ngIf="(colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet)">
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hexWithAlpha" matTooltip="Copy HEX value to clipboard">{{ colorAlpha.hexWithAlpha }}</mat-chip>
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.rgbWithAlpha" matTooltip="Copy RGB value to clipboard">{{ colorAlpha.rgbWithAlpha }}</mat-chip>
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hslWithAlpha" matTooltip="Copy HSL value to clipboard">{{ colorAlpha.hslWithAlpha }}</mat-chip>
                 </mat-chip-list>
-                <mat-chip-list class="info" *ngIf="!colorAlpha.isColorSet">
+
+                <div class="infobar grayScaleLabel" *ngIf="colorAlpha.isGrayScale">
+                    <mat-label>Alpha Applied Color (GrayScale)</mat-label>
+                </div>
+                <mat-chip-list class="info grayScaleChip" *ngIf="colorAlpha.isGrayScale">
+                    <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hexWithGrayScale" matTooltip="Copy grayscale HEX value to clipboard">{{ colorAlpha.hexWithGrayScale }}</mat-chip>
+                    <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.rgbWithGrayScale" matTooltip="Copy grayscale RGB value to clipboard">{{ colorAlpha.rgbWithGrayScale }}</mat-chip>
+                    <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hslWithGrayScale" matTooltip="Copy grayscale HSL value to clipboard">{{ colorAlpha.hslWithGrayScale }}</mat-chip>
+                </mat-chip-list>
+
+                <mat-chip-list class="info" *ngIf="!(colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet)">
                     <mat-chip color="accent" selected>An alpha color format can not apply to these color sets!</mat-chip>
                 </mat-chip-list>
             </div>

@@ -86,6 +86,11 @@
     padding: 8px 0px 0px 24px;
 }
 
+.infobar.grayScaleLabel {
+    margin-left: 0.75em;
+    padding: 24px 0px 0px 24px;
+}
+
 .infobar * {
     font-size: 75%;
     color: rgba(255, 255, 255, .6);
@@ -159,6 +164,7 @@ a:active {
 
 .isForeColorNotSet, .isBackColorNotSet, .isColorSet {
     transition: all 0.5s ease;
+    border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .isForeColorNotSet {
@@ -205,6 +211,11 @@ a:active {
     color: #00bf7e !important;
 }
 
+::ng-deep .info.grayScaleChip .mat-chip {
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    color: rgba(255, 255, 255, 0.40) !important;
+}
+
 /* input */
 
 ::ng-deep .mat-form-field-outline {
@@ -216,5 +227,5 @@ a:active {
 }
 
 ::ng-deep ::placeholder {
-    color: rgba(255, 255, 255, 0.30) !important;
+    color: rgba(255, 255, 255, 0.15) !important;
 }
