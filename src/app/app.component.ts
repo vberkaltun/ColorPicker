@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRipple } from '@angular/material/core';
 
-import { Color, ColorFormat } from './regex.color';
+import { ColorExtended, ColorType, ColorGUI, ColorFormat } from './regex.color';
 import { Match } from './regex.match';
 
 export const COLOR_MIN: number = -1;
@@ -15,7 +15,6 @@ export const ALPHA_MIN: number = 0;
 export const ALPHA_MAX: number = 100;
 
 export enum SearchFormat { Increment, Decrement };
-export enum ColorType { Back, Fore };
 
 @Component({
     selector: 'app-root',
@@ -33,12 +32,12 @@ export class AppComponent implements OnInit {
     public constructor(private snackBar: MatSnackBar) { }
     public ngOnInit(): void { this.init(); }
 
-    public colorFore: Color = new Color();
-    public colorBack: Color = new Color();
-    public colorAlpha: Color = new Color();
+    public colorFore: ColorGUI = new ColorGUI();
+    public colorBack: ColorGUI = new ColorGUI();
+    public colorAlpha: ColorExtended = new ColorExtended();
 
-    public inputFore: string = '25, 25, 25';
-    public inputBack: string = '0, 0, 0';
+    public inputFore: string = '128, 0, 64';
+    public inputBack: string = '255, 0, 0';
 
     // ---
     // trigger events
@@ -184,7 +183,7 @@ export class AppComponent implements OnInit {
 
     private calculateGrayScaleAlphaColor(): boolean {
         // make grayscale calculation
-        if (this.colorFore.grayScale && this.colorBack.grayScale) {
+        if (this.colorFore.isGrayScale && this.colorBack.isGrayScale) {
             let a = (this.colorFore._rgb[0] - this.colorBack._rgb[0]) / (255 - this.colorBack._rgb[0]);
             this.colorAlpha._grayScale = a;
 
