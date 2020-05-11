@@ -42,8 +42,8 @@ export class Color {
 
     // grayscale
     public get hexWithGrayScale(): string { return "#" + (Math.round(this._grayScale * 255) + 0x10000).toString(16).substr(-2).toUpperCase() + "FFFFFF"; }
-    public get rgbWithGrayScale(): string { return "rgb(255, 255, 255, " + this._grayScale + ")"; }
-    public get hslWithGrayScale(): string { return "hsl(0, 0, 100, " + this._grayScale + ")"; }
+    public get rgbWithGrayScale(): string { return "rgb(255, 255, 255, " + Math.round(this._grayScale * 100) / 100 + ")"; }
+    public get hslWithGrayScale(): string { return "hsl(0, 0, 100, " + Math.round(this._grayScale * 100) / 100 + ")"; }
 
     // ui color hotfix
     public get gui(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this.defaultTransparent + ")"; }

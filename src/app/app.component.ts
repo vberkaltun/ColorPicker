@@ -185,7 +185,7 @@ export class AppComponent implements OnInit {
     private calculateGrayScaleAlphaColor(): boolean {
         // make grayscale calculation
         if (this.colorFore.grayScale && this.colorBack.grayScale) {
-            let a = ((255 - this.colorBack._rgb[0]) / (this.colorFore._rgb[0] - this.colorBack._rgb[0]) / 100).toFixed(2);
+            let a = (this.colorFore._rgb[0] - this.colorBack._rgb[0]) / (255 - this.colorBack._rgb[0]);
             this.colorAlpha._grayScale = a;
 
             console.log("GrayScale OK:" + [255, 255, 255, a]);
