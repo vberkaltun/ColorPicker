@@ -30,7 +30,7 @@ export class Match {
 
     public static regexCheckFormat(value: string): [ColorFormat, string] {
         // null check
-        if (value.trim().length == 0) return null;
+        if (value?.trim().length == 0) return null;
 
         // fill and then null check
         let main = new RegExp(this.regexMainFormat).exec(value);
