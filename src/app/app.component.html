@@ -2,7 +2,7 @@
     <span>ALPHA COLOR CONVERTER</span>
     <span><a target="_blank" href="-">Unit Batch for CSS</a></span>
     <span class="spacer"></span>
-    
+
     <span><a target="_blank" href="https://www.buymeacoffee.com/vberkaltun">Wanna support me? (buy-me-a-coffee)</a></span>
     <span><a target="_blank" href="-">Share</a></span>
     <span><a target="_blank" href="https://vberkaltun.com/">Contact</a></span>
@@ -22,8 +22,8 @@
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Background Color</mat-label>
                     <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" type="text" [(ngModel)]="inputBack">
-                    <button mat-button matSuffix mat-icon-button aria-label="Paste" (click)="onPaste(0)"><mat-icon>select_all</mat-icon></button>
-                    <button mat-button [disabled]="!inputBack" matSuffix mat-icon-button aria-label="Clear" (click)="onClear(0)"><mat-icon>close</mat-icon></button>
+                    <button mat-button matSuffix mat-icon-button aria-label="Paste" (click)="onPaste(0)" matTooltip="Paste from clipboard"><mat-icon>select_all</mat-icon></button>
+                    <button mat-button [disabled]="!inputBack" matSuffix mat-icon-button aria-label="Clear" (click)="onClear(0)" matTooltip="Clear value"><mat-icon>close</mat-icon></button>
                 </mat-form-field>
                 <mat-chip-list [disabled]="!colorBack.isColorSet">
                     <mat-chip (click)="colorBack.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorBack.hex" matTooltip="{{ colorBack.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorBack.hex }}</mat-chip>
@@ -35,8 +35,8 @@
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Foreground Color</mat-label>
                     <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" type="text" [(ngModel)]="inputFore">
-                    <button mat-button matSuffix mat-icon-button aria-label="Paste" (click)="onPaste(1)"><mat-icon>select_all</mat-icon></button>
-                    <button mat-button [disabled]="!inputFore" matSuffix mat-icon-button aria-label="Clear" (click)="onClear(1)"><mat-icon>close</mat-icon></button>
+                    <button mat-button matSuffix mat-icon-button aria-label="Paste" (click)="onPaste(1)" matTooltip="Paste from clipboard"><mat-icon>select_all</mat-icon></button>
+                    <button mat-button [disabled]="!inputFore" matSuffix mat-icon-button aria-label="Clear" (click)="onClear(1)" matTooltip="Clear value"><mat-icon>close</mat-icon></button>
                 </mat-form-field>
                 <mat-chip-list [disabled]="!colorFore.isColorSet">
                     <mat-chip (click)="colorFore.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorFore.hex" matTooltip="{{ colorFore.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorFore.hex }}</mat-chip>
