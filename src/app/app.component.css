@@ -227,5 +227,11 @@ a:active {
 }
 
 ::ng-deep ::placeholder {
-    color: rgba(255, 255, 255, 0.15) !important;
+    color: rgba(255, 255, 255, 0.30) !important;
+}
+
+/* button */
+
+::ng-deep.mat-button[disabled][disabled] {
+    color: rgba(255, 255, 255, 0.30) !important;
 }
