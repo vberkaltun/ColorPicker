@@ -15,6 +15,7 @@ export const ALPHA_MIN: number = 0;
 export const ALPHA_MAX: number = 100;
 
 export enum SearchFormat { Increment, Decrement };
+export enum ColorType { Back, Fore };
 
 @Component({
     selector: 'app-root',
@@ -30,17 +31,20 @@ export class AppComponent implements OnInit {
     @ViewChild(MatRipple) ripple: MatRipple;
     public title = 'RGB to RGBA ColorPicker';
     public constructor(private snackBar: MatSnackBar) { }
-    public ngOnInit(): void { }
+    public ngOnInit(): void { this.init(); }
 
     public colorFore: Color = new Color();
     public colorBack: Color = new Color();
     public colorAlpha: Color = new Color();
 
+    public inputFore: string = '128, 0, 64';
+    public inputBack: string = '255, 0, 0';
+
     // ---
     // trigger events
     // ---
 
-    public onForeValueChange(value: string) {
+    public onForeValueChange(value: string = this.inputFore) {
         // first reset all color values to default
         this.colorFore.resetColor();
         this.colorAlpha.resetColor();
@@ -52,16 +56,53 @@ export class AppComponent implements OnInit {
         this.calculateAlphaColorBatch();
     }
 
-    public onBackValueChange(value: string) {
+    public onBackValueChange(value: string = this.inputBack) {
         // first reset all color values to default
         this.colorBack.resetColor();
         this.colorAlpha.resetColor();
-        
+
         let color = Match.regexCheckFormat(value);
         if (color == null) return;
 
         this.colorBack.setColor(color[0], color[1]);
         this.calculateAlphaColorBatch();
+    }
+
+    public onPaste(value: ColorType) {
+        navigator.clipboard.readText()
+            .then(text => {
+                text = text?.trim();
+                switch (value) {
+                    case ColorType.Fore:
+                        this.inputFore = text;
+                        this.onForeValueChange();
+                        break;
+                    case ColorType.Back:
+                        this.inputBack = text;
+                        this.onBackValueChange();
+                        break;
+
+                    default:
+                        break;
+                }
+            })
+            .catch();
+    }
+
+    public onClear(value: ColorType) {
+        switch (value) {
+            case ColorType.Fore:
+                this.inputFore = null;
+                this.onForeValueChange();
+                break;
+            case ColorType.Back:
+                this.inputBack = null;
+                this.onBackValueChange();
+                break;
+
+            default:
+                break;
+        }
     }
 
     public openSnackBar() {
@@ -71,7 +112,7 @@ export class AppComponent implements OnInit {
     }
 
     public onRippleEffect() {
-        this.ripple.launch({
+        this.ripple?.launch({
             centered: true,
         });
     }
@@ -79,6 +120,11 @@ export class AppComponent implements OnInit {
     // ---
     // functions 
     // ---
+
+    private init() {
+        this.onBackValueChange();
+        this.onForeValueChange();
+    }
 
     private calculateAlphaColorBatch() {
         if (!this.calculateAlphaColor(SearchFormat.Increment))
@@ -105,9 +151,9 @@ export class AppComponent implements OnInit {
                 (b < COLOR_MIN || b > COLOR_MAX))
                 continue;
 
-            if (r == Number.NaN || r == Number.POSITIVE_INFINITY || r == Number.NEGATIVE_INFINITY) break;
-            if (g == Number.NaN || g == Number.POSITIVE_INFINITY || g == Number.NEGATIVE_INFINITY) break;
-            if (b == Number.NaN || b == Number.POSITIVE_INFINITY || b == Number.NEGATIVE_INFINITY) break;
+            if (isNaN(r) || r == Number.POSITIVE_INFINITY || r == Number.NEGATIVE_INFINITY) break;
+            if (isNaN(g) || g == Number.POSITIVE_INFINITY || g == Number.NEGATIVE_INFINITY) break;
+            if (isNaN(b) || b == Number.POSITIVE_INFINITY || b == Number.NEGATIVE_INFINITY) break;
 
             r = Math.floor(r);
             g = Math.floor(g);
@@ -124,6 +170,7 @@ export class AppComponent implements OnInit {
             this.colorAlpha.setColorBatch(ColorFormat.RGB, [r, g, b, a]);
             if (this.colorAlpha.rgb == this.colorFore.rgb) break;
 
+            console.log("Color OK:" + [r, g, b, a]);
             this.onRippleEffect();
             return this.colorAlpha._isColorSet = true;
         }

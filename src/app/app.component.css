@@ -1,8 +1,8 @@
 /* BODY ------------------------------------------------------------ */
 
 ::ng-deep .mat-form-field {
-    margin: 0px 0px 0px 24px;
-    float: left;
+    margin: 0px 0px 0px 24px !important;
+    float: left !important;
 }
 
 ::ng-deep .mat-form-field-wrapper {
@@ -11,11 +11,12 @@
 
 ::ng-deep .mat-form-field {
     width: 550px !important;
-    padding: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px !important;
+    font-family: "Overpass Mono", monospace !important;
 }
 
 ::ng-deep .mat-chip-list {
-    padding: 12px 0px 0px 24px;
+    padding: 12px 0px 0px 24px !important;
 }
 
 ::ng-deep .mat-chip {
@@ -33,12 +34,35 @@
     padding: 0px !important;
 }
 
+::ng-deep .mat-toolbar {
+    font-family: "Overpass Mono", monospace !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+
+::ng-deep .mat-toolbar>*:first-child {
+    font-weight: 700 !important;
+}
+
+::ng-deep .mat-toolbar>*:not(:first-child) {
+    padding-left: 24px !important;
+    font-weight: 300 !important;
+}
+
+::ng-deep .mat-icon-button {
+    display: inline-block !important;
+}
+
+::ng-deep .mat-icon {
+    transform: scale(0.60);
+}
+
 /* MAIN & CONTAINER ------------------------------------------------ */
 
 .main {
     width: fit-content;
     margin: 0px auto;
-    padding: 150px 20px 20px 20px;
+    padding: 120px 20px 20px 20px;
 }
 
 .container {
@@ -97,10 +121,38 @@
     /* background-color: rgba(255, 255, 255, 0.7); */
 }
 
+/* SPACER ---------------------------------------------------------- */
+
+.spacer {
+    flex: 1 1 auto;
+}
+
 /* SHADOW ---------------------------------------------------------- */
 
 .shadow {
     box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.05), 0px 20px 20px rgba(255, 255, 255, 0.10);
+}
+
+/* LINK COLOR ------------------------------------------------------ */
+
+a {
+    transition: all 0.2s ease;
+    background-color: transparent;
+}
+
+a:link, a:visited {
+    color: rgba(255, 255, 255, 0.40);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 0.80);
+    text-decoration: underline;
+}
+
+a:active {
+    color: #00bf7e;
+    text-decoration: underline;
 }
 
 /* VALUE CHECK ----------------------------------------------------- */
@@ -124,25 +176,17 @@
 
 /* COLOR PATCH ----------------------------------------------------- */
 
-/* header */
+/* toolbar */
 
-::ng-deep .mat-tab-header {
+::ng-deep .mat-toolbar {
     background-color: black !important;
-    border-bottom: none !important;
-}
-
-::ng-deep .mat-tab-label {
-    color: rgba(255, 255, 255, 0.80) !important;
-}
-
-::ng-deep .mat-ink-bar {
-    background-color: #00bf7e !important;
+    color: rgba(255, 255, 255, 0.60) !important;
 }
 
 /* chevron */
 
 ::ng-deep .mat-tab-header-pagination {
-    background-color: rgba(255, 255, 255, 0.10) !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 ::ng-deep .mat-tab-header-pagination-chevron {
@@ -157,28 +201,20 @@
 }
 
 ::ng-deep .info .mat-chip {
-    background-color: rgba(255, 255, 255, 0.10) !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
     color: #00bf7e !important;
 }
 
 /* input */
 
-::ng-deep .mat-form-field {
-    font-family: "Overpass Mono", monospace !important;
-}
-
 ::ng-deep .mat-form-field-outline {
-    color: rgba(255, 255, 255, 0.10) !important;
+    color: rgba(255, 255, 255, 0.15) !important;
 }
 
 ::ng-deep .mat-form-field-label, .infobar * {
     color: rgba(255, 255, 255, 0.60) !important;
 }
 
-.example-icon {
-    padding: 0 14px;
-}
-
-.example-spacer {
-    flex: 1 1 auto;
+::ng-deep ::placeholder {
+    color: rgba(255, 255, 255, 0.30) !important;
 }

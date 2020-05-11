@@ -1,13 +1,10 @@
-<mat-tab-group color="accent"  mat-align-tabs="end">
-    <mat-tab label="Alpha Color Converter"></mat-tab>
-    <mat-tab label="Unit Batch for CSS"></mat-tab>
-</mat-tab-group>
-
 <mat-toolbar color="accent">
-    <span>Third Line</span>
-    <span class="example-spacer"></span>
-    <span>Alpha Color Converter</span>
-    <span>Unit Batch for CSS</span>
+    <span>ALPHA COLOR CONVERTER</span>
+    <span><a href="-">Unit Batch for CSS</a></span>
+    <span class="spacer"></span>
+    <span><a href="https://www.buymeacoffee.com/vberkaltun">Wanna support me? (buy-me-a-coffee)</a></span>
+    <span><a href="-">Share</a></span>
+    <span><a href="https://vberkaltun.com/">Contact</a></span>
 </mat-toolbar>
   
 <div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(0, 0, 0, 0.50)">
@@ -23,7 +20,9 @@
             <div>
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Background Color</mat-label>
-                    <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="255, 0, 0">
+                    <input matInput (input)="onBackValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" type="text" [(ngModel)]="inputBack">
+                    <button mat-button matSuffix mat-icon-button aria-label="Paste" (click)="onPaste(0)"><mat-icon>select_all</mat-icon></button>
+                    <button mat-button [disabled]="!inputBack" matSuffix mat-icon-button aria-label="Clear" (click)="onClear(0)"><mat-icon>close</mat-icon></button>
                 </mat-form-field>
                 <mat-chip-list [disabled]="!colorBack.isColorSet">
                     <mat-chip (click)="colorBack.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorBack.hex" matTooltip="{{ colorBack.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorBack.hex }}</mat-chip>
@@ -34,7 +33,9 @@
             <div>
                 <mat-form-field color="accent" appearance="outline" floatLabel="always" autocomplete="off">
                     <mat-label>Foreground Color</mat-label>
-                    <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" value="128,0,64">
+                    <input matInput (input)="onForeValueChange($event.target.value)" placeholder="approved RGB, HEX or HSL format" type="text" [(ngModel)]="inputFore">
+                    <button mat-button matSuffix mat-icon-button aria-label="Paste" (click)="onPaste(1)"><mat-icon>select_all</mat-icon></button>
+                    <button mat-button [disabled]="!inputFore" matSuffix mat-icon-button aria-label="Clear" (click)="onClear(1)"><mat-icon>close</mat-icon></button>
                 </mat-form-field>
                 <mat-chip-list [disabled]="!colorFore.isColorSet">
                     <mat-chip (click)="colorFore.isColorSet ? openSnackBar() : null" [cdkCopyToClipboard]="colorFore.hex" matTooltip="{{ colorFore.isColorSet ? 'Copy HEX value to clipboard' : null }}">{{ colorFore.hex }}</mat-chip>
