@@ -26,7 +26,7 @@ export class SampleList {
         this.addColorSet(new Sample([192, 192, 192], [255, 128, 128]));
         this.addColorSet(new Sample([255, 128, 0], [255, 0, 0]));
         this.addColorSet(new Sample([192, 192, 192], [128, 128, 128]));
-        this.addColorSet(new Sample([192, 192, 192], [128, 128, 255]));
+        this.addColorSet(new Sample([100, 100, 100], [200, 200, 200]));
         this.addColorSet(new Sample([192, 192, 192], [255, 128, 192]));
         this.addColorSet(new Sample([0, 128, 192], [0, 64, 128]));
         this.addColorSet(new Sample([64, 128, 128], [0, 0, 255]));
@@ -35,7 +35,7 @@ export class SampleList {
         this.addColorSet(new Sample([64, 128, 128], [0, 255, 0]));
         this.addColorSet(new Sample([192, 192, 192], [128, 255, 128]));
         this.addColorSet(new Sample([0, 128, 192], [0, 255, 0]));
-        this.addColorSet(new Sample([192, 192, 192], [0, 128, 255]));
+        this.addColorSet(new Sample([200, 200, 200], [100, 100, 100]));
         this.addColorSet(new Sample([128, 128, 255], [255, 0, 255]));
         this.addColorSet(new Sample([255, 128, 64], [255, 0, 255]));
         this.addColorSet(new Sample([192, 192, 192], [255, 255, 128]));

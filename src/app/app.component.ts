@@ -8,7 +8,6 @@ import { SampleList } from './module.sample';
 
 export const COLOR_MIN: number = -1;
 export const COLOR_MAX: number = 256;
-
 export const COLOR_BALANCED_MIN: number = 0;
 export const COLOR_BALANCED_MAX: number = 255;
 
@@ -154,7 +153,7 @@ export class AppComponent implements OnInit {
             let g = (this.colorFore._rgb[1] - this.colorBack._rgb[1] + (this.colorBack._rgb[1] * a)) / a;
             let b = (this.colorFore._rgb[2] - this.colorBack._rgb[2] + (this.colorBack._rgb[2] * a)) / a;
 
-            // yes, I know it is looking veey bad but there is no another way...
+            // yes, I know it is looking very bad way but there is no another way... for now...
             if (type == SearchFormat.Increment ?
                 r < COLOR_MIN || g < COLOR_MIN || b < COLOR_MIN :
                 r < COLOR_MAX && g < COLOR_MAX && b < COLOR_MAX) continue;
@@ -183,7 +182,7 @@ export class AppComponent implements OnInit {
             this.colorAlpha.setColorBatch(ColorFormat.RGB, [r, g, b, a]);
             if (this.colorAlpha.rgb == this.colorFore.rgb) break;
 
-            console.log("Color OK:" + [r, g, b, a]);
+            console.log("COK:" + [r, g, b, a]);
             this.onRippleEffect();
             return this.colorAlpha._isColorSet = true;
         }
@@ -195,10 +194,18 @@ export class AppComponent implements OnInit {
     private calculateGrayScaleAlphaColor(): boolean {
         // make grayscale calculation
         if (this.colorFore.isGrayScale && this.colorBack.isGrayScale) {
-            let a = (this.colorFore._rgb[0] - this.colorBack._rgb[0]) / (255 - this.colorBack._rgb[0]);
-            this.colorAlpha._grayScale = a;
+            
+            // set flag of fore high value, it can be 255 or 0
+            this.colorAlpha._isGrayScaleForeHigh = Number(this.colorFore._rgb[0]) > Number(this.colorBack._rgb[0]) ? true : false;
 
-            console.log("GrayScale OK:" + [255, 255, 255, a]);
+            let bound = this.colorAlpha._isGrayScaleForeHigh ? 255 : 0;
+            let a = this.colorAlpha._isGrayScaleForeHigh
+                ? (this.colorFore._rgb[0] - this.colorBack._rgb[0]) / (bound - this.colorBack._rgb[0])
+                : (this.colorBack._rgb[0] - this.colorFore._rgb[0]) / (this.colorBack._rgb[0] - bound);
+
+            // set alpha value
+            this.colorAlpha._grayScale = a;
+            console.log("GOK:" + [bound, bound, bound, a]);
             return this.colorAlpha._isGrayScale = true;
         }
 

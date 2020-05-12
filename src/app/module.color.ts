@@ -110,6 +110,11 @@ export class ColorGUI extends Color {
 }
 
 export class ColorExtended extends Color {
+
+    // ---
+    // variables and const
+    // ---
+
     // default colors
     protected readonly defaultGrayScale = 0.0;
 
@@ -119,15 +124,23 @@ export class ColorExtended extends Color {
     public get hslWithAlpha(): string { return "hsl(" + this._hsl[0] + ", " + this._hsl[1] + ", " + this._hsl[2] + ", " + this._rgb[3] + ")"; }
 
     // grayscale result
-    public get hexWithGrayScale(): string { return "#" + (Math.round(this._grayScale * 255) + 0x10000).toString(16).substr(-2).toUpperCase() + "FFFFFF"; }
-    public get rgbWithGrayScale(): string { return "rgb(255, 255, 255, " + Math.round(this._grayScale * 100) / 100 + ")"; }
-    public get hslWithGrayScale(): string { return "hsl(0, 0, 100, " + Math.round(this._grayScale * 100) / 100 + ")"; }
+    public get hexWithGrayScale(): string { return this.getHEXFormat((Math.round(this._grayScale * 255) + 0x10000).toString(16).substr(-2).toUpperCase()); }
+    public get rgbWithGrayScale(): string { return this.getRGBFormat(Math.round(this._grayScale * 100) / 100); }
+    public get hslWithGrayScale(): string { return this.getHSLFormat(Math.round(this._grayScale * 100) / 100); }
+
+    // ---
 
     public _grayScale: any = this.defaultGrayScale;
     public _isGrayScale: any = false;
+    public _isGrayScaleForeHigh: any = false;
 
-    public get grayScale(): boolean { return this._grayScale; }
+    public get grayScale(): number { return this._grayScale; }
     public get isGrayScale(): boolean { return this._isGrayScale; }
+    public get isGrayScaleHighBound(): number { return this._isGrayScaleForeHigh; }
+
+    // ---
+    // public functions
+    // ---
 
     public resetColor() {
         // call base member
@@ -135,5 +148,15 @@ export class ColorExtended extends Color {
 
         this._grayScale = this.defaultGrayScale;
         this._isGrayScale = false;
+        this._isGrayScaleForeHigh = false;
     }
+
+    // ---
+    // private functions
+    // ---
+
+    // grayscale formatter with high bound value
+    private getHEXFormat(value: any): string { return "#" + value + ((this._isGrayScaleForeHigh) ? "FFFFFF" : "000000") };
+    private getRGBFormat(value: any): string { return ((this._isGrayScaleForeHigh) ? "rgb(255, 255, 255, " : "rgb(0, 0, 0, ") + value + ")" };
+    private getHSLFormat(value: any): string { return ((this._isGrayScaleForeHigh) ? "hsl(0, 0, 100, " : "hsl(0, 0, 0, ") + value + ")" };
 }

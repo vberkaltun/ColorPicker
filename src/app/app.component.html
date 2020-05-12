@@ -61,7 +61,7 @@
                 </mat-chip-list>
 
                 <div class="infobar grayScaleLabel" *ngIf="colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet && colorAlpha.isGrayScale && colorAlpha.rgbWithAlpha != colorAlpha.rgbWithGrayScale">
-                    <mat-label>Alpha Applied Color (GrayScale)</mat-label>
+                    <mat-label>High Contrast GrayScale</mat-label>
                 </div>
                 <mat-chip-list class="info grayScaleChip" *ngIf="colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet && colorAlpha.isGrayScale && colorAlpha.rgbWithAlpha != colorAlpha.rgbWithGrayScale">
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hexWithGrayScale" matTooltip="Copy grayscale HEX value to clipboard">{{ colorAlpha.hexWithGrayScale }}</mat-chip>
