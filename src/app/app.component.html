@@ -55,17 +55,17 @@
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hslWithAlpha" matTooltip="Copy HSL value to clipboard">{{ colorAlpha.hslWithAlpha }}</mat-chip>
                 </mat-chip-list>
 
-                <div class="infobar grayScaleLabel" *ngIf="colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet && colorAlpha.isGrayScale">
+                <mat-chip-list class="info" *ngIf="!(colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet)">
+                    <mat-chip color="accent" selected>An alpha color format can not apply to these color sets!</mat-chip>
+                </mat-chip-list>
+
+                <div class="infobar grayScaleLabel" *ngIf="colorAlpha.rgbWithAlpha != colorAlpha.rgbWithGrayScale && colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet && colorAlpha.isGrayScale">
                     <mat-label>Alpha Applied Color (GrayScale)</mat-label>
                 </div>
-                <mat-chip-list class="info grayScaleChip" *ngIf="colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet && colorAlpha.isGrayScale">
+                <mat-chip-list class="info grayScaleChip" *ngIf="colorAlpha.rgbWithAlpha != colorAlpha.rgbWithGrayScale && colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet && colorAlpha.isGrayScale">
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hexWithGrayScale" matTooltip="Copy grayscale HEX value to clipboard">{{ colorAlpha.hexWithGrayScale }}</mat-chip>
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.rgbWithGrayScale" matTooltip="Copy grayscale RGB value to clipboard">{{ colorAlpha.rgbWithGrayScale }}</mat-chip>
                     <mat-chip color="accent" selected (click)="openSnackBar()" [cdkCopyToClipboard]="colorAlpha.hslWithGrayScale" matTooltip="Copy grayscale HSL value to clipboard">{{ colorAlpha.hslWithGrayScale }}</mat-chip>
-                </mat-chip-list>
-
-                <mat-chip-list class="info" *ngIf="!(colorAlpha.isColorSet && colorFore.isColorSet && colorBack.isColorSet)">
-                    <mat-chip color="accent" selected>An alpha color format can not apply to these color sets!</mat-chip>
                 </mat-chip-list>
             </div>
         </div>
