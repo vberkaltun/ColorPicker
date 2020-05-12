@@ -57,6 +57,10 @@
     transform: scale(0.60);
 }
 
+::ng-deep .mat-card-image {
+    vertical-align: middle;
+}
+
 /* MAIN & CONTAINER ------------------------------------------------ */
 
 .main {
