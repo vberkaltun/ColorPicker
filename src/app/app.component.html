@@ -14,7 +14,7 @@
         <div class="input">
             <div class="layer">
                 <div class="back shadow" [ngStyle]="colorBack.isColorSet ? { 'background' : colorBack.gui } : null" [ngClass]="colorBack.isColorSet ? 'isColorSet' : 'isBackColorNotSet'"></div>
-                <div class="fore shadow" [ngStyle]="colorFore.isColorSet ? ( colorAlpha.isColorSet ? { background : 'linear-gradient(45deg,' + colorFore.rgb + ' 15%, ' + colorAlpha.rgbWithAlpha + ' 100%)' } : { 'background' : colorFore.gui } ) : null" [ngClass]="colorFore.isColorSet ? 'isColorSet' : 'isForeColorNotSet'"></div>
+                <div class="fore shadow" [ngStyle]="colorFore.isColorSet ? ( colorAlpha.isColorSet ? { background : 'linear-gradient(45deg,' + colorFore.rgb + ' 15%, ' + colorAlpha.rgbWithFixedAlpha + ' 100%)' } : { 'background' : colorFore.gui } ) : null" [ngClass]="colorFore.isColorSet ? 'isColorSet' : 'isForeColorNotSet'"></div>
             </div>
         </div>
 
