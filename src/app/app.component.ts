@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRipple } from '@angular/material/core';
 
-import { ColorExtended, ColorType, ColorGUI, ColorFormat } from './regex.color';
-import { Match } from './regex.match';
+import { ColorExtended, ColorType, ColorGUI, ColorFormat } from './module.color';
+import { Match } from './module.match';
+import { SampleList } from './module.sample';
 
 export const COLOR_MIN: number = -1;
 export const COLOR_MAX: number = 256;
@@ -36,8 +37,11 @@ export class AppComponent implements OnInit {
     public colorBack: ColorGUI = new ColorGUI();
     public colorAlpha: ColorExtended = new ColorExtended();
 
-    public inputFore: string = '128, 0, 64';
-    public inputBack: string = '255, 0, 0';
+    public inputFore: string = null;
+    public inputBack: string = null;
+
+    // we will get a sample from sample list
+    private sampleList: SampleList = new SampleList();
 
     // ---
     // trigger events
@@ -121,8 +125,15 @@ export class AppComponent implements OnInit {
     // ---
 
     private init() {
-        this.onBackValueChange();
+        let random = this.sampleList.getRandomColor();
+        this.inputFore = random.rgbFore;
+        this.inputBack = random.rgbBack;
+
+        console.log(random.rgbFore);
+        console.log(random._rgbFore);
+
         this.onForeValueChange();
+        this.onBackValueChange();
     }
 
     private calculateAlphaColorBatch() {
