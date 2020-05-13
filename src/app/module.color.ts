@@ -105,8 +105,20 @@ export class ColorGUI extends Color {
     protected readonly defaultTransparent = 0.75;
 
     // ui color hotfix
-    public get gui(): string { return "rgb(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + this.defaultTransparent + ")"; }
-    public get isGrayScale(): boolean { return this._rgb[0] == this._rgb[1] && this._rgb[0] == this._rgb[2]; }
+    public get gui(): string {
+        return "rgba(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", "
+            + this.defaultTransparent + ")";
+    }
+    public get border(): string {
+        return "0px 5px 10px "
+            + "rgba(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + 0.15 + ")" + ", 0px 20px 20px "
+            + "rgba(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + 0.15 + ")";
+    }
+
+    public get isGrayScale(): boolean {
+        return this._rgb[0] == this._rgb[1]
+            && this._rgb[0] == this._rgb[2];
+    }
 }
 
 export class ColorExtended extends Color {

@@ -11,8 +11,8 @@
 <div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(0, 0, 0, 0.10)">
     <div class="input">
         <div class="layer">
-            <div class="back shadow" [ngStyle]="colorBack.isColorSet ? { 'background' : colorBack.gui } : null" [ngClass]="colorBack.isColorSet ? 'isColorSet' : 'isBackColorNotSet'"></div>
-            <div class="fore shadow" [ngStyle]="colorFore.isColorSet ? ( colorAlpha.isColorSet ? { background : 'linear-gradient(45deg,' + colorFore.rgb + ' 15%, ' + colorAlpha.rgbWithFixedAlpha + ' 100%)' } : { 'background' : colorFore.gui } ) : null" [ngClass]="colorFore.isColorSet ? 'isColorSet' : 'isForeColorNotSet'"></div>
+            <div class="back" [ngStyle]="colorBack.isColorSet ? { 'box-shadow' : colorBack.border, 'background' : colorBack.gui } : null" [ngClass]="colorBack.isColorSet ? 'isColorSet' : 'isBackColorNotSet'"></div>
+            <div class="fore" [ngStyle]="colorFore.isColorSet ? ( colorAlpha.isColorSet ? { 'box-shadow' : colorFore.border, background : 'linear-gradient(45deg,' + colorFore.rgb + ' 15%, ' + colorAlpha.rgbWithFixedAlpha + ' 100%)' } : { 'box-shadow' : colorFore.border, 'background' : colorFore.gui } ) : null" [ngClass]="colorFore.isColorSet ? 'isColorSet' : 'isForeColorNotSet'"></div>
         </div>
     </div>
 
