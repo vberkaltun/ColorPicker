@@ -128,9 +128,6 @@ export class AppComponent implements OnInit {
         this.inputFore = random.rgbFore;
         this.inputBack = random.rgbBack;
 
-        console.log(random.rgbFore);
-        console.log(random._rgbFore);
-
         this.onForeValueChange();
         this.onBackValueChange();
     }
