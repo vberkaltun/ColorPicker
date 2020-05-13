@@ -61,18 +61,13 @@
     vertical-align: middle;
 }
 
-/* MAIN & CONTAINER ------------------------------------------------ */
+/* MAIN ------------------------------------------------------------ */
 
 .main {
-    width: fit-content;
-    margin: 0px auto;
-    padding: 120px 20px 20px 20px;
-}
-
-.container {
     display: flex;
     width: fit-content;
-    padding: 24px 0px 0px 0px;
+    margin: 0px auto;
+    padding: 144px 20px 20px 20px;
 }
 
 /* SETTINGS -------------------------------------------------------- */
