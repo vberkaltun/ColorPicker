@@ -111,7 +111,7 @@ export class ColorGUI extends Color {
     }
     public get border(): string {
         return "0px 5px 10px "
-            + "rgba(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + 0.15 + ")" + ", 0px 20px 20px "
+            + "rgba(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + 0.20 + ")" + ", 0px 20px 20px "
             + "rgba(" + this._rgb[0] + ", " + this._rgb[1] + ", " + this._rgb[2] + ", " + 0.15 + ")";
     }
 
