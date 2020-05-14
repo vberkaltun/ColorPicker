@@ -21,7 +21,7 @@ export class SampleList {
     public constructor() {
         this.addColorSet(new Sample([0, 128, 128], [0, 255, 64]));
         this.addColorSet(new Sample([255, 128, 0], [255, 0, 64]));
-        this.addColorSet(new Sample([192, 192, 192], [128, 128, 128]));
+        this.addColorSet(new Sample([128, 128, 64], [255, 255, 0]));
         this.addColorSet(new Sample([100, 100, 100], [200, 200, 200]));
         this.addColorSet(new Sample([0, 128, 192], [0, 64, 128]));
         this.addColorSet(new Sample([64, 0, 128], [64, 0, 255]));
