@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRipple } from '@angular/material/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-import { ColorExtended, ColorType, ColorGUI, ColorFormat } from './module.color';
-import { Match } from './module.match';
-import { SampleList } from './module.sample';
+import { ColorExtended, ColorType, ColorGUI, ColorFormat } from '../colormodule/colormodule.color';
+import { Match } from '../colormodule/colormodule.match';
+import { SampleList } from '../colormodule/colormodule.sample';
+import { DialogOverview } from '../dialogoverview/app.dialogoverview';
 
 export const COLOR_MIN: number = -1;
 export const COLOR_MAX: number = 256;
@@ -18,8 +20,8 @@ export enum SearchFormat { Increment, Decrement };
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    templateUrl: './app.mainpage.html',
+    styleUrls: ['./app.mainpage.css'],
 })
 export class AppComponent implements OnInit {
 
@@ -27,9 +29,11 @@ export class AppComponent implements OnInit {
     // variables and const
     // ---
 
+    public constructor(public dialog: MatDialog, public snackBar: MatSnackBar) { }
+    public onOpenDialogOverview(): void { this.dialog.open(DialogOverview); }
+
     @ViewChild(MatRipple) ripple: MatRipple;
     public title = 'RGB to RGBA ColorPicker';
-    public constructor(private snackBar: MatSnackBar) { }
     public ngOnInit(): void { this.init(); }
 
     public colorFore: ColorGUI = new ColorGUI();
@@ -191,7 +195,7 @@ export class AppComponent implements OnInit {
     private calculateGrayScaleAlphaColor(): boolean {
         // make grayscale calculation
         if (this.colorFore.isGrayScale && this.colorBack.isGrayScale) {
-            
+
             // set flag of fore high value, it can be 255 or 0
             this.colorAlpha._isGrayScaleForeHigh = Number(this.colorFore._rgb[0]) > Number(this.colorBack._rgb[0]) ? true : false;
 

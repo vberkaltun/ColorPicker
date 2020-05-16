@@ -1,4 +1,3 @@
-import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -46,8 +45,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppComponent } from './mainpage/app.mainpage';
+import { DialogOverview } from './dialogoverview/app.dialogoverview';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    DialogOverview
+  ],
   imports: [
     BrowserModule,
     FormsModule,

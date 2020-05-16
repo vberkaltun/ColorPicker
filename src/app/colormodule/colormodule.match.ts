@@ -1,4 +1,4 @@
-import { ColorFormat } from './module.color';
+import { ColorFormat } from './colormodule.color';
 
 export class Match {
 
