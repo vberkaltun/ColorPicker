@@ -7,6 +7,7 @@ import { ColorExtended, ColorType, ColorGUI, ColorFormat } from '../colormodule/
 import { Match } from '../colormodule/colormodule.match';
 import { SampleList } from '../colormodule/colormodule.sample';
 import { DialogOverview } from '../dialogoverview/app.dialogoverview';
+import { MatSidenav } from '@angular/material/sidenav';
 
 export const COLOR_MIN: number = -1;
 export const COLOR_MAX: number = 256;
@@ -29,12 +30,12 @@ export class AppComponent implements OnInit {
     // variables and const
     // ---
 
+    public title = 'RGB to RGBA ColorPicker';
     public constructor(public dialog: MatDialog, public snackBar: MatSnackBar) { }
-    public onOpenDialogOverview(): void { this.dialog.open(DialogOverview); }
+    public ngOnInit(): void { this.init(); }
 
     @ViewChild(MatRipple) ripple: MatRipple;
-    public title = 'RGB to RGBA ColorPicker';
-    public ngOnInit(): void { this.init(); }
+    @ViewChild('sidenav') sidenav: MatSidenav;
 
     public colorFore: ColorGUI = new ColorGUI();
     public colorBack: ColorGUI = new ColorGUI();
@@ -121,6 +122,15 @@ export class AppComponent implements OnInit {
         this.ripple?.launch({
             centered: true,
         });
+    }
+
+    public onOpenDialogOverview() {
+        this.onToggleSidenav(false);
+        this.dialog.open(DialogOverview);
+    }
+
+    public onToggleSidenav(status: boolean) {
+        status ? this.sidenav.open() : this.sidenav.close();
     }
 
     // ---

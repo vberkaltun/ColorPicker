@@ -1,13 +1,13 @@
 <mat-drawer-container autosize hasBackdrop="true">
-	<mat-drawer #drawer mode="over">
+	<mat-drawer #sidenav mode="over">
 		<mat-list class="navbar">
 			<mat-list-item class="navIcon"><img mat-card-image src="assets/favicon/ms-icon-144x144.png" alt="icon" width="16" height="16"></mat-list-item>
 			<mat-list-item><a mat-button href="-" target="_blank" disabled>Unit Batch for CSS (Coming Soon)</a></mat-list-item>
 			<mat-divider></mat-divider>
-			<mat-list-item><a mat-button href="-" target="_blank">How it works?</a></mat-list-item>
+			<mat-list-item><button mat-button (click)="onOpenDialogOverview()">How it works?</button></mat-list-item>
 			<mat-list-item><a mat-button href="https://www.buymeacoffee.com/vberkaltun" target="_blank">Wanna support me? (buy-me-a-coffee)</a></mat-list-item>
 			<mat-list-item><a mat-button href="https://vberkaltun.com/" target="_blank">Contact</a></mat-list-item>
-			<mat-list-item class="navClose"><button mat-button (click)="drawer.close()">Close</button></mat-list-item>
+			<mat-list-item class="navClose"><button mat-button (click)="onToggleSidenav(false)">Close</button></mat-list-item>
 		</mat-list>
 	</mat-drawer>
 	
@@ -18,7 +18,7 @@
 		<span class="navItem"><button mat-button (click)="onOpenDialogOverview()">How it works?</button></span>
 		<span class="navItem"><a mat-button target="_blank" href="https://www.buymeacoffee.com/vberkaltun">Wanna support me? (buy-me-a-coffee)</a></span>
 		<span class="navItem"><a mat-button target="_blank" href="https://vberkaltun.com/">Contact</a></span>
-		<span class="navHamburger"><button mat-button type="button" (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button></span>
+		<span class="navHamburger"><button mat-button type="button" (click)="onToggleSidenav(true)"><mat-icon>menu</mat-icon></button></span>
 	</mat-toolbar>
 	
 	<div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(0, 0, 0, 0.10)">
