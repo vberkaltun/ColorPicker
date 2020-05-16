@@ -233,6 +233,7 @@
 
 ::ng-deep .navbar .navLogo a:hover, .navbar .navLogo .mat-buttonhover {
     text-decoration: none !important;
+    color: #00bf7e !important
 }
 
 ::ng-deep .navbar .navClose a, .navbar .navClose .mat-button {
@@ -251,7 +252,7 @@
     color: rgba(255, 255, 255, 0.80);
 }
 
-::ng-deep .navbar a:active:not(:first-child), .navbar .mat-button:active {
+::ng-deep .navbar a:active, .navbar .mat-button:active {
     text-decoration: underline;
     color: #00bf7e;
 }
