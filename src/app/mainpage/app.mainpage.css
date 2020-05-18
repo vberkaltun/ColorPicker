@@ -81,6 +81,7 @@
 .infobar {
     margin-left: 0.75em;
     padding: 8px 0px 0px 24px;
+    font-family: "Overpass Mono", monospace !important;
 }
 
 .infobar.grayScaleLabel {
