@@ -1,0 +1,24 @@
+::ng-deep .mat-dialog-title {
+    font-family: "Overpass Mono", monospace !important;
+    font-weight: 700 !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+    max-width: 720px !important;
+}
+
+::ng-deep .mat-dialog-container {
+    background-color: rgb(16, 16, 16, 0.80) !important;
+}
+
+@media only screen and (max-width: 800px) {
+    ::ng-deep .cdk-overlay-pane {
+        max-width: 550px !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    ::ng-deep .cdk-overlay-pane {
+        max-width: 300px !important;
+    }
+}

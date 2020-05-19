@@ -22,7 +22,7 @@ export enum SearchFormat { Increment, Decrement };
 @Component({
     selector: 'app-root',
     templateUrl: './app.mainpage.html',
-    styleUrls: ['./app.mainpage.css'],
+    styleUrls: ['./app.mainpage.scss']
 })
 export class AppComponent implements OnInit {
 
@@ -43,6 +43,9 @@ export class AppComponent implements OnInit {
 
     public inputFore: string = null;
     public inputBack: string = null;
+
+    // store theme status at the here
+    public themeToggle: boolean = false;
 
     // we will get a sample from sample list
     private sampleList: SampleList = new SampleList();
