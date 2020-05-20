@@ -80,6 +80,19 @@ a {
   opacity: 1 !important;
 }
 
+::ng-deep .cookie-law-wrapper .copy {
+  font-family: "Overpass Mono", monospace !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: initial !important;
+}
+
+::ng-deep .cookie-law-wrapper .dismiss svg {
+  width: 16px !important;
+  height: 16px !important;
+  line-height: initial !important;
+}
+
 /* MAIN ------------------------------------------------------------ */
 
 .main {
@@ -207,13 +220,29 @@ a {
 
 /* COLOR PATCH ----------------------------------------------------- */
 
+/* snackbar */
+
 ::ng-deep .mat-snack-bar-container,
 .mat-simple-snackbar-action {
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
 }
 
 ::ng-deep .mat-snack-bar-container {
   background-color: rgb(32, 32, 32) !important;
+}
+
+/* cookie */
+
+::ng-deep .cookie-law-wrapper {
+  background-color: rgb(32, 32, 32, 0.8) !important;
+}
+
+::ng-deep .cookie-law-wrapper .copy span {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+::ng-deep .cookie-law-wrapper a svg {
+  fill: rgba(255, 255, 255, 0.4) !important;
 }
 
 .whiteMain,
@@ -578,6 +607,15 @@ a {
   ::ng-deep .mat-form-field,
   .mat-chip-list {
     width: 400px !important;
+  }
+
+  ::ng-deep .cookie-law-wrapper .copy {
+    padding: 20px 60px 20px 20px !important;
+  }
+
+  ::ng-deep .cookie-law-wrapper .dismiss {
+    top: 10px !important;
+    right: 15px !important;
   }
 }
 
