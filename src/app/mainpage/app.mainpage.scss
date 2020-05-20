@@ -210,7 +210,9 @@ a {
 }
 
 .whiteMain,
-.blackMain {
+.blackMain,
+.white,
+.black {
   height: 100%;
   width: 100%;
 }
@@ -531,6 +533,8 @@ a {
 
 /* RESPONSIVE ----------------------------------------------------- */
 
+/* width */
+
 @media only screen and (max-width: 1600px) {
   .navItem {
     display: none;
@@ -540,10 +544,10 @@ a {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 850px) {
   .main {
     display: block;
-    padding: 20px;
+    padding: 20px !important;
   }
   .input {
     padding: 24px 0px 48px 0px;
@@ -563,9 +567,44 @@ a {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
+  ::ng-deep .mat-form-field,
+  .mat-chip-list {
+    width: 400px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  ::ng-deep .mat-form-field,
+  .mat-chip-list {
+    width: 340px !important;
+  }
+}
+
+@media only screen and (max-width: 420px) {
   ::ng-deep .mat-form-field,
   .mat-chip-list {
     width: 300px !important;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  ::ng-deep .mat-form-field,
+  .mat-chip-list {
+    width: 250px !important;
+  }
+}
+
+/* height */
+
+@media only screen and (max-height: 650px) {
+  .main {
+    padding: 72px 20px 20px 20px;
+  }
+}
+
+@media only screen and (max-height: 500px) {
+  .main {
+    padding: 20px;
   }
 }
