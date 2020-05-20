@@ -44,6 +44,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './mainpage/app.mainpage';
 import { DialogOverview } from './dialogoverview/app.dialogoverview';
@@ -101,7 +102,7 @@ import { DialogOverview } from './dialogoverview/app.dialogoverview';
     ScrollingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA],
 })
