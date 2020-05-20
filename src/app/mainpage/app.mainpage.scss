@@ -165,6 +165,13 @@ a {
   flex: 1 1 auto;
 }
 
+/* ICON ------------------------------------------------------------ */
+
+.icon {
+  padding-right: 10px;
+  font-size: 22px;
+}
+
 /* VALUE CHECK ----------------------------------------------------- */
 
 .isForeColorNotSet,
@@ -307,7 +314,7 @@ a {
 
   /* navbar sub-items */
 
-  ::ng-deep .navbar .navLogo a,
+  ::ng-deep .navbar .navLogo button,
   .navbar .navLogo .mat-button,
   .navbar .navHamburger a,
   .navbar .navHamburger .mat-button {
@@ -315,7 +322,7 @@ a {
     color: rgba(0, 0, 0, 0.6);
   }
 
-  ::ng-deep .navbar .navLogo a:hover,
+  ::ng-deep .navbar .navLogo button:hover,
   .navbar .navLogo .mat-buttonhover {
     text-decoration: none !important;
     color: #00bf7e !important;
@@ -462,7 +469,7 @@ a {
 
   /* navbar sub-items */
 
-  ::ng-deep .navbar .navLogo a,
+  ::ng-deep .navbar .navLogo button,
   .navbar .navLogo .mat-button,
   .navbar .navHamburger a,
   .navbar .navHamburger .mat-button {
@@ -470,7 +477,7 @@ a {
     color: rgba(255, 255, 255, 0.6);
   }
 
-  ::ng-deep .navbar .navLogo a:hover,
+  ::ng-deep .navbar .navLogo button:hover,
   .navbar .navLogo .mat-buttonhover {
     text-decoration: none !important;
     color: #00bf7e !important;

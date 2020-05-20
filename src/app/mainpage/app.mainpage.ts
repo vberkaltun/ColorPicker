@@ -55,6 +55,8 @@ export class AppComponent implements OnInit {
         console.log("New theme value: " + this.themeToggleValue);
     }
     public get themeToggle(): boolean {
+        // false = white
+        // true  = black
         return this.themeToggleValue;
     }
 

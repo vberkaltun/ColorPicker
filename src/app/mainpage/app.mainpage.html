@@ -1,31 +1,31 @@
-<div [ngClass]="themeToggle ? 'blackMain' : 'whiteMain'">
+<div [ngClass]="themeToggle ? 'blackMain' : 'whiteMain'" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(128, 128, 128, 0.05)">
 	<div [ngClass]="themeToggle ? 'black' : 'white'">
 		<mat-drawer-container autosize hasBackdrop="true">
 			<mat-drawer #sidenav mode="over">
 				<mat-list class="navbar">
 					<mat-list-item class="navIcon"><img mat-card-image src="assets/favicon/ms-icon-144x144.png" alt="icon" width="16" height="16"></mat-list-item>
-					<mat-list-item><a mat-button href="-" target="_blank" disabled>Unit Batch for CSS (Coming Soon)</a></mat-list-item>
+					<mat-list-item><a mat-button target="_blank" href="-" disabled>Unit Batch for CSS (Coming Soon)</a></mat-list-item>
 					<mat-divider></mat-divider>
 					<mat-list-item><button mat-button (click)="themeToggle = !themeToggle"><mat-slide-toggle disabled [(ngModel)]="themeToggle"></mat-slide-toggle>{{ themeToggle ? 'Black Theme' : 'White Theme' }}</button></mat-list-item>
-					<mat-list-item><button mat-button (click)="onOpenDialogOverview()">How it works?</button></mat-list-item>
-					<mat-list-item><a mat-button href="https://www.buymeacoffee.com/vberkaltun" target="_blank">Wanna support me? (buy-me-a-coffee)</a></mat-list-item>
-					<mat-list-item><a mat-button href="https://vberkaltun.com/" target="_blank">Contact</a></mat-list-item>
+					<mat-list-item><button mat-button (click)="onOpenDialogOverview()"><span class="icon material-icons">open_in_new</span>How it works?</button></mat-list-item>
+					<mat-list-item><a mat-button target="_blank" href="https://www.buymeacoffee.com/vberkaltun">Wanna support me? (buy-me-a-coffee)</a></mat-list-item>
+					<mat-list-item><a mat-button target="_blank" href="https://vberkaltun.com/">Contact</a></mat-list-item>
 					<mat-list-item class="navClose"><button mat-button (click)="onToggleSidenav(false)">Close</button></mat-list-item>
 				</mat-list>
 			</mat-drawer>
 			
 			<mat-toolbar class="navbar" color="accent">
-				<span class="navLogo"><a mat-button target="_blank" href="-"><img mat-card-image src="assets/favicon/ms-icon-144x144.png" alt="icon" width="16" height="16"> ALPHA COLOR CONVERTER</a></span>
+				<span class="navLogo"><button mat-button (click)="init()"><img mat-card-image class="icon" src="assets/favicon/ms-icon-144x144.png" alt="icon" width="16" height="16">ALPHA COLOR CONVERTER</button></span>
 				<span class="navItem"><a mat-button target="_blank" href="-" disabled>Unit Batch for CSS (Coming Soon)</a></span>
 				<span class="spacer"></span>
 				<span class="navItem"><button mat-button (click)="themeToggle = !themeToggle"><mat-slide-toggle disabled [(ngModel)]="themeToggle"></mat-slide-toggle>{{ themeToggle ? 'Black Theme' : 'White Theme' }}</button></span>
-				<span class="navItem"><button mat-button (click)="onOpenDialogOverview()">How it works?</button></span>
+				<span class="navItem"><button mat-button (click)="onOpenDialogOverview()"><span class="icon material-icons">open_in_new</span>How it works?</button></span>
 				<span class="navItem"><a mat-button target="_blank" href="https://www.buymeacoffee.com/vberkaltun">Wanna support me? (buy-me-a-coffee)</a></span>
 				<span class="navItem"><a mat-button target="_blank" href="https://vberkaltun.com/">Contact</a></span>
 				<span class="navHamburger"><button mat-button type="button" (click)="onToggleSidenav(true)"><mat-icon>menu</mat-icon></button></span>
 			</mat-toolbar>
 			
-			<div class="main" matRipple matRippleCentered="Centered" matRippleDisabled="disabled" matRippleColor="rgba(0, 0, 0, 0.10)">
+			<div class="main">
 				<div class="input">
 					<div class="layer">
 						<div class="back" [ngStyle]="colorBack.isColorSet ? { 'box-shadow' : colorBack.border, 'background' : colorBack.gui } : null" [ngClass]="colorBack.isColorSet ? 'isColorSet' : 'isBackColorNotSet'"></div>
