@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRipple } from '@angular/material/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CookieService } from 'ngx-cookie-service';
 
 import { ColorExtended, ColorType, ColorGUI, ColorFormat } from '../colormodule/colormodule.color';
 import { Match } from '../colormodule/colormodule.match';
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
     // ---
 
     public title = 'RGB to RGBA ColorPicker';
-    public constructor(public dialog: MatDialog, public snackBar: MatSnackBar) { }
+    public constructor(public dialog: MatDialog, public snackBar: MatSnackBar, public cookie: CookieService) { }
     public ngOnInit(): void { this.init(); }
 
     @ViewChild(MatRipple) ripple: MatRipple;
@@ -45,10 +46,20 @@ export class AppComponent implements OnInit {
     public inputBack: string = null;
 
     // store theme status at the here
-    public themeToggle: boolean = false;
+    public themeToggleName: string = "themeToggle";
+    public themeToggleValue: boolean = false;
+
+    public set themeToggle(value: boolean) {
+        this.themeToggleValue = value;
+        this.setColorCookie(this.themeToggleName, Number(this.themeToggleValue));
+        console.log("New theme value: " + this.themeToggleValue);
+    }
+    public get themeToggle(): boolean {
+        return this.themeToggleValue;
+    }
 
     // we will get a sample from sample list
-    private sampleList: SampleList = new SampleList();
+    public sampleList: SampleList = new SampleList();
 
     // ---
     // trigger events
@@ -137,6 +148,18 @@ export class AppComponent implements OnInit {
     }
 
     // ---
+    // cookie manager 
+    // ---
+
+    private setColorCookie(key: string, value: any) {
+        this.cookie.set(key, String(value));
+    }
+
+    private getColorCookie(key: string) {
+        return this.cookie.get(key);
+    }
+
+    // ---
     // functions 
     // ---
 
@@ -147,6 +170,10 @@ export class AppComponent implements OnInit {
 
         this.onForeValueChange();
         this.onBackValueChange();
+
+        // get latest status of theme toggle
+        this.themeToggleValue = Boolean(Number(this.getColorCookie(this.themeToggleName)));
+        console.log("Restored theme value: " + this.themeToggleValue);
     }
 
     private calculateAlphaColorBatch() {
