@@ -149,6 +149,10 @@ export class AppComponent implements OnInit {
         status ? this.sidenav.open() : this.sidenav.close();
     }
 
+    public onRefreshColorSet() {
+        this.init();
+    }
+
     // ---
     // cookie manager 
     // ---
