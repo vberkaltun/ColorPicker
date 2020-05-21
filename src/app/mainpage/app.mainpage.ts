@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRipple } from '@angular/material/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
 
 import { ColorExtended, ColorType, ColorGUI, ColorFormat } from '../colormodule/colormodule.color';
 import { Match } from '../colormodule/colormodule.match';
 import { SampleList } from '../colormodule/colormodule.sample';
-import { DialogOverview } from '../dialogoverview/app.dialogoverview';
 import { MatSidenav } from '@angular/material/sidenav';
 
 export const COLOR_MIN: number = -1;
@@ -32,7 +30,7 @@ export class AppComponent implements OnInit {
     // ---
 
     public title = 'RGB to RGBA ColorPicker';
-    public constructor(public dialog: MatDialog, public snackBar: MatSnackBar, public cookie: CookieService) { }
+    public constructor(public snackBar: MatSnackBar, public cookie: CookieService) { }
     public ngOnInit(): void { this.init(); }
 
     @ViewChild(MatRipple) ripple: MatRipple;
@@ -138,11 +136,6 @@ export class AppComponent implements OnInit {
         this.ripple?.launch({
             centered: true,
         });
-    }
-
-    public onOpenDialogOverview() {
-        this.onToggleSidenav(false);
-        this.dialog.open(DialogOverview);
     }
 
     public onToggleSidenav(status: boolean) {

@@ -46,15 +46,10 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
 import { CookieLawModule } from 'angular2-cookie-law';
-
 import { AppComponent } from './mainpage/app.mainpage';
-import { DialogOverview } from './dialogoverview/app.dialogoverview';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DialogOverview
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
