@@ -61,8 +61,21 @@ a {
   height: 100% !important;
 }
 
-::ng-deep .mat-slide-toggle-content {
+::ng-deep .mat-accordion {
+  width: 100% !important;
+}
+
+::ng-deep .mat-expansion-panel {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .mat-expansion-panel * {
   font-family: "Overpass Mono", monospace !important;
+}
+
+::ng-deep .mat-slide-toggle-content,
+.mat-expansion-panel-header {
   font-size: 14px !important;
   font-weight: 400 !important;
 }
@@ -99,7 +112,15 @@ a {
   display: flex;
   width: fit-content;
   margin: 0px auto;
-  padding: 144px 20px 20px 20px;
+  padding: 144px 20px 0px 20px;
+}
+
+/* INFORMATION ----------------------------------------------------- */
+
+.information {
+  margin: 0px auto;
+  width: 698px;
+  padding: 0px 20px 20px 20px;
 }
 
 /* SETTINGS -------------------------------------------------------- */
@@ -220,8 +241,6 @@ a {
 
 /* COLOR PATCH ----------------------------------------------------- */
 
-/* snackbar */
-
 ::ng-deep .mat-snack-bar-container,
 .mat-simple-snackbar-action {
   color: rgb(255, 255, 255) !important;
@@ -230,8 +249,6 @@ a {
 ::ng-deep .mat-snack-bar-container {
   background-color: rgb(32, 32, 32) !important;
 }
-
-/* cookie */
 
 ::ng-deep .cookie-law-wrapper {
   background-color: rgb(32, 32, 32, 0.8) !important;
@@ -243,6 +260,10 @@ a {
 
 ::ng-deep .cookie-law-wrapper a svg {
   fill: rgba(255, 255, 255, 0.4) !important;
+}
+
+::ng-deep .mat-drawer-container {
+  background-color: transparent !important;
 }
 
 .whiteMain,
@@ -274,6 +295,24 @@ a {
 
   .infobar * {
     color: rgba(0, 0, 0, 0.6);
+  }
+
+  /* expansion */
+
+  ::ng-deep .mat-expansion-panel-header-title {
+    color: rgba(0, 0, 0, 1) !important;
+  }
+
+  ::ng-deep .mat-expansion-indicator::after {
+    color: rgba(0, 0, 0, 1) !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-description {
+    color: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  ::ng-deep .mat-expansion-panel *:not(:first-child) {
+    color: rgba(0, 0, 0, 0.8) !important;
   }
 
   /* form */
@@ -332,7 +371,7 @@ a {
   }
 
   ::ng-deep .mat-divider {
-    border-top-color: rgba(0, 0, 0, 0.1) !important;
+    border-top-color: rgba(0, 0, 0, 0.15) !important;
   }
 
   /* button */
@@ -405,10 +444,6 @@ a {
     border-right: solid 1px rgba(0, 0, 0, 0.05) !important;
   }
 
-  ::ng-deep .mat-drawer-container {
-    background-color: transparent !important;
-  }
-
   ::ng-deep .mat-drawer-inner-container {
     background-color: rgb(240, 240, 240, 0.8) !important;
   }
@@ -429,6 +464,24 @@ a {
 
   .infobar * {
     color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* expansion */
+
+  ::ng-deep .mat-expansion-panel-header-title {
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  ::ng-deep .mat-expansion-indicator::after {
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header-description {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  ::ng-deep .mat-expansion-panel *:not(:first-child) {
+    color: rgba(255, 255, 255, 0.8) !important;
   }
 
   /* form */
@@ -487,7 +540,7 @@ a {
   }
 
   ::ng-deep .mat-divider {
-    border-top-color: rgba(255, 255, 255, 0.1) !important;
+    border-top-color: rgba(255, 255, 255, 0.15) !important;
   }
 
   /* button */
@@ -554,10 +607,6 @@ a {
     border-right: solid 1px rgba(255, 255, 255, 0.05) !important;
   }
 
-  ::ng-deep .mat-drawer-container {
-    background-color: transparent !important;
-  }
-
   ::ng-deep .mat-drawer-inner-container {
     background-color: rgb(16, 16, 16, 0.8) !important;
   }
@@ -604,6 +653,10 @@ a {
 }
 
 @media only screen and (max-width: 650px) {
+  .information {
+    width: 400px !important;
+  }
+
   ::ng-deep .mat-form-field,
   .mat-chip-list {
     width: 400px !important;
@@ -620,6 +673,10 @@ a {
 }
 
 @media only screen and (max-width: 500px) {
+  .information {
+    width: 340px;
+  }
+
   ::ng-deep .mat-form-field,
   .mat-chip-list {
     width: 340px !important;
@@ -627,6 +684,10 @@ a {
 }
 
 @media only screen and (max-width: 420px) {
+  .information {
+    width: 300px;
+  }
+
   ::ng-deep .mat-form-field,
   .mat-chip-list {
     width: 300px !important;
@@ -634,6 +695,10 @@ a {
 }
 
 @media only screen and (max-width: 370px) {
+  .information {
+    width: 250px;
+  }
+
   ::ng-deep .mat-form-field,
   .mat-chip-list {
     width: 250px !important;

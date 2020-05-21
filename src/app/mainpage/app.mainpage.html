@@ -7,10 +7,9 @@
 					<mat-list-item><a mat-button target="_blank" href="-" disabled>Unit Batch for CSS (Coming Soon)</a></mat-list-item>
 					<mat-divider></mat-divider>
 					<mat-list-item><button mat-button (click)="themeToggle = !themeToggle"><mat-slide-toggle disabled [(ngModel)]="themeToggle"></mat-slide-toggle>{{ themeToggle ? 'Black Theme' : 'White Theme' }}</button></mat-list-item>
-					<mat-list-item><button mat-button (click)="onOpenDialogOverview()"><span class="icon material-icons">open_in_new</span>How it works?</button></mat-list-item>
 					<mat-list-item><a mat-button target="_blank" href="https://www.buymeacoffee.com/vberkaltun">Wanna support me? (buy-me-a-coffee)</a></mat-list-item>
 					<mat-list-item><a mat-button target="_blank" href="https://vberkaltun.com/">Contact</a></mat-list-item>
-					<mat-list-item class="navClose"><button mat-button (click)="onToggleSidenav(false)">Close</button></mat-list-item>
+					<mat-list-item class="navClose"><a mat-button (click)="onToggleSidenav(false)">Close</a></mat-list-item>
 				</mat-list>
 			</mat-drawer>
 			
@@ -19,7 +18,6 @@
 				<span class="navItem"><a mat-button target="_blank" href="-" disabled>Unit Batch for CSS (Coming Soon)</a></span>
 				<span class="spacer"></span>
 				<span class="navItem"><button mat-button (click)="themeToggle = !themeToggle"><mat-slide-toggle disabled [(ngModel)]="themeToggle"></mat-slide-toggle>{{ themeToggle ? 'Black Theme' : 'White Theme' }}</button></span>
-				<span class="navItem"><button mat-button (click)="onOpenDialogOverview()"><span class="icon material-icons">open_in_new</span>How it works?</button></span>
 				<span class="navItem"><a mat-button target="_blank" href="https://www.buymeacoffee.com/vberkaltun">Wanna support me? (buy-me-a-coffee)</a></span>
 				<span class="navItem"><a mat-button target="_blank" href="https://vberkaltun.com/">Contact</a></span>
 				<span class="navHamburger"><button mat-button type="button" (click)="onToggleSidenav(true)"><mat-icon>menu</mat-icon></button></span>
@@ -86,7 +84,46 @@
 					</div>
 				</div>
 			</div>
+			<div class="information">
+				<mat-divider></mat-divider>
+				<mat-accordion>
+					<mat-expansion-panel>
+						<mat-expansion-panel-header>
+							<mat-panel-title>How it works?</mat-panel-title>
+						</mat-expansion-panel-header>
+						<p>
+							The Alpha Color Converter is an experimental RGB to RGBA color converter tool to make transparent layering on the web applications. 
+							With this tool, you can use transparent fore colors instead of non-alpha fore colors.
+						</p>
+						<p>
+							The calculation works based on these inputs and table below: RGB1 is fore color, RGB2 is back color and RGB3 is result color.
+						</p>
+						<p>
+							r3 = r2 + (r1 - r2) * a1<br>
+							g3 = g2 + (g1 - g2) * a1<br>
+							b3 = b2 + (b1 - b2) * a1<br>
+						</p>
+						<p>
+							If your color sets are able to present with alpha value, 
+							there can be a large number of RGBA colors (infinite, in floating-point space) that could satisfy the requirements. 
+							In this step, the algorithm first checks that the alpha-convertibility of RGB1 and RGB2 color sets. 
+							And then It calculates all possible color sets with alpha values and returns the highest possible threshold value in this result list.
+						</p>
+						<p>
+							Additional to that, there is another calculation for grayscale color. 
+							If you directly set two grayscale colors for the fore and background, 
+							the algorithm also does the grayscale calculation. If there is a possible solution, 
+							you will be informed about this solution as well with an additional section which popups below.
+						</p>
+						<p>
+							The algorithm works experimental and may not prove the absolute results directly. 
+							The result can be the closest value based on your inputs as well. Cause of that, 
+							I'm not responsible for any problem which may occur on your project due to this toolchain.
+						</p>
+					</mat-expansion-panel>	
+				</mat-accordion>
+			</div>
 		</mat-drawer-container>	
 	</div>
+	<cookie-law></cookie-law>
 </div>
-<cookie-law></cookie-law>
