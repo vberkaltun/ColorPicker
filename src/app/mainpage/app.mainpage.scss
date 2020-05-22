@@ -31,6 +31,11 @@ a {
   height: unset !important;
 }
 
+::ng-deep .mat-divider {
+  margin: 12px 0px !important;
+  padding: 0px !important;
+}
+
 ::ng-deep .mat-toolbar,
 .mat-button {
   font-family: "Overpass Mono", monospace !important;
@@ -326,6 +331,12 @@ a {
     color: rgba(0, 0, 0, 0.3) !important;
   }
 
+  /* divider */
+
+  ::ng-deep .mat-divider {
+    border-top-color: rgba(0, 0, 0, 0.15) !important;
+  }
+
   /* button */
 
   ::ng-deep .mat-button[disabled][disabled] {
@@ -496,6 +507,12 @@ a {
 
   ::ng-deep ::placeholder {
     color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  /* divider */
+
+  ::ng-deep .mat-divider {
+    border-top-color: rgba(255, 255, 255, 0.15) !important;
   }
 
   /* button */
