@@ -14,7 +14,7 @@
 			</mat-drawer>
 			
 			<mat-toolbar class="navbar" color="accent">
-				<span class="navLogo"><button mat-button (click)="onRefreshColorSet()"><img mat-card-image class="icon" src="assets/favicon/ms-icon-144x144.png" alt="icon" width="16" height="16">ALPHA COLOR CONVERTER</button></span>
+				<span class="navLogo"><button mat-button (click)="onRefreshColorSet()"><img mat-card-image class="icon" src="assets/favicon/ms-icon-144x144.png" alt="icon" width="16" height="16"><span class="navItem">csshandle.com / </span>ALPHA COLOR CONVERTER</button></span>
 				<span class="navItem"><a mat-button target="_blank" href="-" disabled>Unit Batch for CSS (Coming Soon)</a></span>
 				<span class="spacer"></span>
 				<span class="navItem"><button mat-button (click)="themeToggle = !themeToggle"><mat-slide-toggle disabled [(ngModel)]="themeToggle"></mat-slide-toggle>{{ themeToggle ? 'Black Theme' : 'White Theme' }}</button></span>

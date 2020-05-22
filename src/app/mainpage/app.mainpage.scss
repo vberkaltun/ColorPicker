@@ -188,27 +188,6 @@ a {
   transition: all 0.5s ease;
 }
 
-.isForeColorNotSet {
-  background: repeating-linear-gradient(
-    -45deg,
-    rgba(0, 0, 0, 0.25),
-    rgba(0, 0, 0, 0.25) 5px,
-    rgba(0, 0, 0, 0.3) 5px,
-    rgba(0, 0, 0, 0.3) 10px
-  );
-  /* background: linear-gradient(45deg, rgba(2, 0, 36, 1) 0%, rgba(0, 212, 255, 0.75) 10 F0%) */
-}
-
-.isBackColorNotSet {
-  background: repeating-linear-gradient(
-    +45deg,
-    rgba(0, 0, 0, 0.25),
-    rgba(0, 0, 0, 0.25) 5px,
-    rgba(0, 0, 0, 0.3) 5px,
-    rgba(0, 0, 0, 0.3) 10px
-  );
-}
-
 .isColorSet {
   background: transparent;
 }
@@ -263,6 +242,27 @@ a {
 
   .isColorSet {
     border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .isForeColorNotSet {
+    background: repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.25) 5px,
+      rgba(0, 0, 0, 0.3) 5px,
+      rgba(0, 0, 0, 0.3) 10px
+    );
+    /* background: linear-gradient(45deg, rgba(2, 0, 36, 1) 0%, rgba(0, 212, 255, 0.75) 10 F0%) */
+  }
+
+  .isBackColorNotSet {
+    background: repeating-linear-gradient(
+      +45deg,
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.25) 5px,
+      rgba(0, 0, 0, 0.3) 5px,
+      rgba(0, 0, 0, 0.3) 10px
+    );
   }
 
   /* infobar */
@@ -414,6 +414,27 @@ a {
 
   .isColorSet {
     border: 1px solid rgba(255, 255, 255, 0.01);
+  }
+
+  .isForeColorNotSet {
+    background: repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.25) 5px,
+      rgba(255, 255, 255, 0.3) 5px,
+      rgba(255, 255, 255, 0.3) 10px
+    );
+    /* background: linear-gradient(45deg, rgba(2, 0, 36, 1) 0%, rgba(0, 212, 255, 0.75) 10 F0%) */
+  }
+
+  .isBackColorNotSet {
+    background: repeating-linear-gradient(
+      +45deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.25) 5px,
+      rgba(255, 255, 255, 0.3) 5px,
+      rgba(255, 255, 255, 0.3) 10px
+    );
   }
 
   /* infobar */
