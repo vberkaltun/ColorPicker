@@ -1,0 +1,171 @@
+.black {
+    /* isColorSet */
+  
+    .isColorSet {
+      border: 1px solid rgba(255, 255, 255, 0.01);
+    }
+  
+    .isForeColorNotSet {
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.25),
+        rgba(255, 255, 255, 0.25) 5px,
+        rgba(255, 255, 255, 0.3) 5px,
+        rgba(255, 255, 255, 0.3) 10px
+      );
+      /* background: linear-gradient(45deg, rgba(2, 0, 36, 1) 0%, rgba(0, 212, 255, 0.75) 10 F0%) */
+    }
+  
+    .isBackColorNotSet {
+      background: repeating-linear-gradient(
+        +45deg,
+        rgba(255, 255, 255, 0.25),
+        rgba(255, 255, 255, 0.25) 5px,
+        rgba(255, 255, 255, 0.3) 5px,
+        rgba(255, 255, 255, 0.3) 10px
+      );
+    }
+  
+    /* infobar */
+  
+    .infobar * {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  
+    /* form */
+  
+    ::ng-deep .mat-form-field {
+      color: rgba(255, 255, 255) !important;
+    }
+  
+    /* toolbar */
+  
+    ::ng-deep .mat-toolbar {
+      background-color: transparent !important;
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  
+    /* chevron */
+  
+    ::ng-deep .mat-tab-header-pagination {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+    }
+  
+    ::ng-deep .mat-tab-header-pagination-chevron {
+      border-color: #00bf7e !important;
+    }
+  
+    /* selected */
+  
+    ::ng-deep .mat-chip {
+      background-color: rgba(255, 255, 255, 0) !important;
+      color: #00bf7e !important;
+    }
+  
+    ::ng-deep .info .mat-chip {
+      background-color: rgba(255, 255, 255, 0.15) !important;
+      color: #00bf7e !important;
+    }
+  
+    ::ng-deep .info.grayScaleChip .mat-chip {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      color: rgba(255, 255, 255, 0.4) !important;
+    }
+  
+    /* input */
+  
+    ::ng-deep .mat-form-field-outline {
+      color: rgba(255, 255, 255, 0.15) !important;
+    }
+  
+    ::ng-deep .mat-form-field-label,
+    .infobar * {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  
+    ::ng-deep ::placeholder {
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+  
+    /* divider */
+  
+    ::ng-deep .mat-divider {
+      border-top-color: rgba(255, 255, 255, 0.15) !important;
+    }
+  
+    /* button */
+  
+    ::ng-deep .mat-button[disabled][disabled] {
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+  
+    /* navbar sub-items */
+  
+    ::ng-deep .navbar .navLogo button,
+    .navbar .navLogo .mat-button,
+    .navbar .navHamburger a,
+    .navbar .navHamburger .mat-button {
+      font-weight: 700 !important;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  
+    ::ng-deep .navbar .navLogo button:hover,
+    .navbar .navLogo .mat-buttonhover {
+      text-decoration: none !important;
+      color: #00bf7e !important;
+    }
+  
+    ::ng-deep .navbar .navClose a,
+    .navbar .navClose .mat-button {
+      color: rgba(255, 255, 255);
+    }
+  
+    /* navbar */
+  
+    ::ng-deep .navbar a:link,
+    .mat-toolbar a:visited,
+    .navbar .mat-button {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  
+    ::ng-deep .navbar a:hover,
+    .navbar .mat-button:hover {
+      text-decoration: underline;
+      color: rgba(255, 255, 255, 0.8);
+    }
+  
+    ::ng-deep .navbar a:active,
+    .navbar .mat-button:active {
+      text-decoration: underline;
+      color: #00bf7e;
+    }
+  
+    ::ng-deep .navbar a[disabled][disabled],
+    .navbar .mat-button[disabled][disabled] {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.3);
+    }
+  
+    /* drawer */
+  
+    ::ng-deep .mat-drawer {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+  
+    ::ng-deep .mat-drawer-side {
+      border-right: solid 1px rgba(255, 255, 255, 0.05) !important;
+    }
+  
+    ::ng-deep .mat-drawer-container {
+      background-color: transparent !important;
+    }
+  
+    ::ng-deep .mat-drawer-inner-container {
+      background-color: rgb(16, 16, 16, 0.8) !important;
+    }
+  
+    ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+      background-color: rgba(0, 0, 0, 0.8) !important;
+    }
+  }

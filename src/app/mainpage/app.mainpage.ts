@@ -21,7 +21,12 @@ export enum SearchFormat { Increment, Decrement };
 @Component({
     selector: 'app-root',
     templateUrl: './app.mainpage.html',
-    styleUrls: ['./app.mainpage.scss']
+    styleUrls: 
+    [
+        './app.mainpage.scss',
+        './app.mainpage.theme.white.scss',
+        './app.mainpage.theme.black.scss'
+    ]
 })
 export class AppComponent implements OnInit {
 
